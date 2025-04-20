@@ -170,7 +170,7 @@ class InventoryItem extends Resource {
         super(name);
 
         let quantityProp = new ResourceProperty();
-        quantityProp.name = "Quantity";
+        quantityProp.name = "Quantité";
         quantityProp.value = quantity;
         /**
          * @type {Object.<string, ResourceProperty>}

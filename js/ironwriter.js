@@ -994,9 +994,9 @@ function createMoment(input, type, index) {
                 moment.addAction(updateAsset(args));
             } else if (args[0] == "supprimeratout") {
                 moment.addAction(removeAsset(args));
-            } else if (args[0] == "item") {
+            } else if (args[0] == "objet") {
                 moment.addAction(updateInventory(args));
-            } else if (args[0] == "removeitem") {
+            } else if (args[0] == "supprimerobjet") {
                 moment.addAction(removeInventory(args));
             } else if (args[0] == "progrès") {
                 action = progress(args);
@@ -1011,7 +1011,7 @@ function createMoment(input, type, index) {
                 moment.addAction(removeDebility(args));
                 moment.addAction(new StatAction("momentumMax", "+", 1));
                 moment.addAction(new StatAction("momentumReset", "+", 1));
-            } else if (args[0] == "bookmark") {
+            } else if (args[0] == "étiquette") {
                 args[2] = type;
                 moment.addAction(addBookmark(args, index));
             } else if (STATS[args[0]] !== undefined) {
@@ -1100,7 +1100,7 @@ function updateInventory(args) {
     if (args.length == 3) {
         // assume last argument is quantity
         args[3] = args[2];
-        args[2] = 'Quantity';
+        args[2] = 'Quantité';
     }
 
     action.action = (session.state.items[id]) ? "update" : "add";

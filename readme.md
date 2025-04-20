@@ -239,50 +239,50 @@ supprimerAtout <nom>
 * `atout Artisan Spécialité Herboriste` Ajuste la propriété "Spécialité" à "Herboriste" pour l'atout nommé "Artisan".
 * `supprimerAtout Artisan` Supprimer l'atout "Artisan".
 
-## Managing Inventory
-Adds and updates your character's inventory.
+## Gérer l'inventaire
+Ajoute ou modifie un objet dans l'inventaire.
 ```
-item <name> <quantity>
-```
-```
-item <name> <property> {modifier}<value>
+objet <nom> <quantité>
 ```
 ```
-removeItem <name>
+objet <nom> <propriété> {modificateur}<valeur>
 ```
-
-### Parameters
-* `<name>` The name of the item.
-* `<quantity>` The value you wish to set for the "Quantity" property of the item. Defaults to `1` if not specified.
-    The following options can be used:
-    * `{+/-}<value>` The quantity to add, remove, or set.
-        * `+` Adds the specified `value`.
-        * `-` Subtracts the specified `value`.
-        * Not specifying a modifier sets the "Quantity" property to the specified `value`.
-* `<property>` The name of an item property.
-* `{modifier}` How you want the `value` parameter to be applied. The following options can be used:
-    * `+` (Number Only) Adds the specified `value`.
-    * `-` (Number Only) Subtracts the specified `value`.
-    * Not specifying a modifier sets the stat to the specified `value`.
-* `<value>` The value of the property. Can be a number or text.
-
-### Examples
-* `item Dagger` Adds an item called "Dagger" with the default "Quantity" property set at "1".
-* `item Arrows 5` Adds an item called "Arrows" with the "Quantity" property set at "5".
-* `item Dagger Condition 3` Sets the "Condition" property to "3" for the item called "Dagger".
-* `item Dagger Condition +2` Adds "2" to the "Condition" property for the item called "Dagger".
-* `item Dagger Condition -5` Subtracts "5" from the "Condition" property for the item called "Dagger".
-* `item Waterskin Level Full` Sets the "Level" property to "Full" for the item called "Waterskin".
-* `removeItem Waterskin` Removes "Waterskin" from the inventory.
-
-## Bookmarking Events
-Adds a Bookmark to the bookmark list.
 ```
-bookmark <name>
+supprimerObjet <nom>
 ```
 
-### Parameters
-* `<name>` The name of the bookmark.
+### Paramètres
+* `<nom>` Le nom de l'objet
+* `<quantité>` La valeur à donner à la propriété "Quantité" de l'objet. Valeur de 1 par défaut.
+    Les options suivantes sont possibles
+    * `{+/-}<valeur>` La quantité à ajouter/soustraire/ajuster.
+        * `+` Ajoute la `valeur` donnée.
+        * `-` Enlève la `valeur` donnée.
+        * Sans modificateur, ajuste la propriété "Quantité" à la `valeur` donnée.
+* `<propriété>` Le nom d'une propriété de l'objet.
+* `{modificateur}` La manière dont vous souhaitez appliquer la `valeur`. Les options possibles sont possibles :
+    * `+` (Uniquement un nombre) Ajoute la `valeur` donnée.
+    * `-` (Uniquement un nombre) Enlève la `valeur` donnée.
+    * Sans modificateur, ajuste la propriété à la `valeur` donnée.
+* `<valeur>` La valeur de la propriété. Peut être un nombre ou un texte.
 
-### Examples
-* `bookmark "Arrived at Greathill"` Adds a bookmark called "Arrived at Greathill".
+### Exemples
+* `objet Dague` Ajoute l'objet "Dague" avec la propriété "Quantité" par défaut à 1.
+* `objet Flêche 5` Ajoute l'objet "Flêche" avec la propriété "Quantité" à 5.
+* `objet Dague Condition 3` Change la propriété "Condition" de l'objet "Dague" à 3.
+* `objet Dague Condition +2` Ajoute "2" à la propriété "Condition" de l'objet "Dague".
+* `objet Dague Condition -5` Enlève "5" à la propriété "Condition" de l'objet "Dague".
+* `objet Outre Niveau Plein` Change la propriété "Niveau" à "Plein" pour l'objet "Outre".
+* `supprimerObjet Outre` Supprimer "Outre" de l'inventaire.
+
+## Étiquette d'évènements
+Ajoute une étiquette à la liste d'étiquettes.
+```
+étiquette <nom>
+```
+
+### Paramètres
+* `<nom>` Le nom de l'étiquette.
+
+### Exemples
+* `étiquette "Arrivée at Grand-colline"` Ajoute une étiquette nommée "Arrivée à Grand-colline".
