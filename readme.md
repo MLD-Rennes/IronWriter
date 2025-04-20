@@ -95,68 +95,71 @@ Renomme le personnage.
 ```
 renommer <nom>
 ```
-### Parameters
+### Paramètres
 * `<nom>` Le nom voulu.
 
-### Examples
+### Exemples
 * `renommer Maura` Change le nom du personnage en "Maura".
 * `renommer "Brynn Tahir"` Change le nom du personnage en "Brynn Tahir".
     
-## Changing Stats
-Changes a stat's value. Note that the first parameter is not literally "stat" but the stat that you wish to change.
+## Changer les caractéristiques
+Change la valeur d'une caractéristique. Attention, le premier paramètre n'est pas littéralement "caractéristique" mais la caractéristique
+que vous voulez changer.
 ```
-<stat> {modifier}<value>
+<carac> {modificateur}<valeur>
 ```
-### Stats
-* edge
-* heart
-* iron
-* shadow
-* wits
-* health
-* supply
-* spirit
-* momentum
-* experience
-* experienceSpent
+### Caractéristiques
+* vivacité
+* coeur
+* fer
+* ombre
+* astuce
+* santé
+* provision
+* esprit
+* élan
+* expérience
+* expérienceDépensée
 
-### Parameters
-* `<stat>` The stat you wish to change.
-* `<value>` The value to be applied to the specified `stat`.
-* `{modifier}` How you want the `value` parameter to be applied. The following options can be used:
-    * `+` Adds the specified `value`.
-    * `-` Subtracts the specified `value`.
-    * Not specifying a modifier sets the stat to the specified `value`.
+### Paramètres
+* `<carac>` La caractéristique que vous voulez changer.
+* `<valeur>` La valeur à appliquer à la `carac` donnée.
+* `{modificateur}` La manière dont on souhaite appliquer la `valeur` Les options suivantes sont possibles :
+    * `+` Ajoute la `valeur` donnée.
+    * `-` Soustrait la `valeur` donnée.
+    * Sans modificateur, la `carac` prend la `valeur` donnée.
 
-### Examples
-* `health +1` increases health by 1
-* `spirit -2` decreases spirit by 2
-* `iron 3` sets iron to 3
+### Exemples
+* `santé +1` augmente la santé de 1
+* `esprit -2` diminue l'esprit de 2
+* `fer 3` modifie fer à 3
+* `expérience 3` modifie l'expérience à 3
+* `expérienceDépensée +2` ajoute deux à l'expérience dépensée
 
-## Adding and Removing Debilities
-Adds and removes debilities and automatically changes max momentum and momentum reset stats.
+## Ajouter et supprimer des handicaps
+Ajoute et supprime les handicaps et change automatiquement l'élan maxi et la valeur de réinitialisation de l'élan.
 ```
-is <debility>
+est <handicap>
 ```
 ```
-not <debility>
+pas <handicap>
 ```
-### Debilities
-* wounded
-* shaken
-* unprepared
-* encumbered
-* maimed
-* corrupted
-* cursed
-* tormented
+### Handicaps
+* blessé
+* secoué
+* malPréparé
+* encombré
+* mutilé
+* corrompu
+* maudit
+* tourmenté
 
-### Parameters
-* `<debility>` The debility that you is to add or remove.
+### Paramètres
+* `<handicap>` Le handicap que vous voulez ajouter ou supprimer.
 
-### Examples
-* `is wounded` Adds the wounded debility.
-* `not wounded` Removes the wounded debility.
+### Exemples
+* `est blessé` Ajoute le handicap blessé.
+* `pas blessé` Supprime le handicap blessé.
 
 ## Marking Progress
 Starts, compeltes, or marks progress on a specific track.

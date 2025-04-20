@@ -447,6 +447,10 @@ class StatAction extends Action {
         } else {
             gameState.stats[this.statId] = this.value;
         }
+		
+		if (gameState.stats.momentumReset > 2) {
+			gameState.stats.momentumReset = 2;
+		}
         
         if (gameState.stats.momentumReset < 0) {
             gameState.stats.momentumReset = 0;

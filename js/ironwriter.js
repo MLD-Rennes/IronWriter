@@ -31,31 +31,31 @@ const CHALLENGE_RANKS = {
 };
 
 const STATS = {
-    edge: 0,
-    heart: 0,
-    iron: 0,
-    shadow: 0,
-    wits: 0,
-    health: 0,
-    supply: 0,
-    spirit: 0,
-    momentum: 0,
+    vivacité: 0,
+    coeur: 0,
+    fer: 0,
+    ombre: 0,
+    astuce: 0,
+    santé: 0,
+    provision: 0,
+    esprit: 0,
+    élan: 0,
     momentumMax: 0,
     momentumReset: 0,
-    experience: 0,
-    experienceSpent: 0,
+    expérience: 0,
+    expériencedépensée: 0,
     bonds: 0,
 };
 
 const DEBILITIES = {
-    wounded: 0,
-    shaken: 0,
-    unprepared: 0,
-    encumbered: 0,
-    maimed: 0,
-    corrupted: 0,
-    cursed: 0,
-    tormented: 0,
+    blessé: 0,
+    secoué: 0,
+    malpréparé: 0,
+    encombré: 0,
+    mutilé: 0,
+    corrompu: 0,
+    maudit: 0,
+    tourmenté: 0,
 };
 
 const SCROLL_EFFECT = { behavior: "smooth", block: "center", inline: "nearest" };
@@ -275,14 +275,13 @@ function newSession() {
     session = new Session();
     
     let initialMoment = new Moment("", EventType.None);
-    initialMoment.addAction(new CharacterNameAction("New Character"));
-    initialMoment.addAction(new StatAction("momentum", "=", 2));
+    initialMoment.addAction(new CharacterNameAction("Nouveau personnage"));
+    initialMoment.addAction(new StatAction("élan", "=", 2));
     initialMoment.addAction(new StatAction("momentumReset", "=", 2));
     initialMoment.addAction(new StatAction("momentumMax", "=", 10));
-    initialMoment.addAction(new StatAction("health", "=", 5));
-    initialMoment.addAction(new StatAction("supply", "=", 5));
-    initialMoment.addAction(new StatAction("spirit", "=", 5));
-    initialMoment.addAction(new StatAction("spirit", "=", 5));
+    initialMoment.addAction(new StatAction("santé", "=", 5));
+    initialMoment.addAction(new StatAction("provision", "=", 5));
+    initialMoment.addAction(new StatAction("esprit", "=", 5));
     session.addMoment(initialMoment);
 
     saveSession();
@@ -408,7 +407,7 @@ function initDebilities() {
 }
 
 function initExperience() {
-    experience = document.getElementById("experience");
+    experience = document.getElementById("expérience");
     let template = experience.querySelector(".dot");
     let container = experience.querySelector(".wrapper");
     for (let i = 0; i < MAX_EXPERIENCE - 1; i++) {
@@ -816,8 +815,8 @@ function refresh() {
         spent.style.display = "none";
         available.style.display = "none";
 
-        if (i < session.state.stats.experience) {
-            if (i < session.state.stats.experienceSpent) {
+        if (i < session.state.stats.expérience) {
+            if (i < session.state.stats.expériencedépensée) {
                 available.style.display = "block";
             } else {
                 spent.style.display = "block";
@@ -1004,11 +1003,11 @@ function createMoment(input, type, index) {
                 moment.addAction(action);
             } else if (args[0] == "renommer") {
                 moment.addAction(renameCharacter(args));
-            } else if (args[0] == "is") {
+            } else if (args[0] == "est") {
                 moment.addAction(addDebility(args));
                 moment.addAction(new StatAction("momentumMax", "-", 1));
                 moment.addAction(new StatAction("momentumReset", "-", 1));
-            } else if (args[0] == "not") {
+            } else if (args[0] == "pas") {
                 moment.addAction(removeDebility(args));
                 moment.addAction(new StatAction("momentumMax", "+", 1));
                 moment.addAction(new StatAction("momentumReset", "+", 1));
