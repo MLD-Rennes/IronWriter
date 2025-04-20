@@ -984,15 +984,15 @@ function createMoment(input, type, index) {
             // Ignore case for tags
             args[0] = args[0].toLowerCase();
 
-            if (args[0] == "bond") {
+            if (args[0] == "lien") {
                 action = addBond(args);
                 moment.addAction(action);
-            } else if (args[0] == "unbond") {
+            } else if (args[0] == "supprimerlien") {
                 action = removeBond(args);
                 moment.addAction(action);
-            } else if (args[0] == "asset") {
+            } else if (args[0] == "atout") {
                 moment.addAction(updateAsset(args));
-            } else if (args[0] == "removeasset") {
+            } else if (args[0] == "supprimeratout") {
                 moment.addAction(removeAsset(args));
             } else if (args[0] == "item") {
                 moment.addAction(updateInventory(args));

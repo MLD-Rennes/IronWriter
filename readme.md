@@ -191,53 +191,53 @@ progrès <nom> {modificateur}
 * `progrès "Tuer Martu" 8` Ajuste le nombre de coches à 8.
 * `progrès "Tuer Martu" complet` Supprime la jauge de progression nommée "Tuer Martu".
 
-## Making Bonds
-Adds a bond to your list of bonds and adds a tick to your bond progress track.
+## Créer des liens
+Ajoute un lien à la liste des liens et ajoute une coche à la jauge de progression de liens.
 ```
-bond <name>
-```
-```
-unbond <name>
-```
-
-### Parameters
-* `<name>` Text describing the bond.
-
-### Examples
-* `bond Father` Adds a bond called "Father" and adds 1 tick to the bond progress track.
-* `unbond Father` Removes the bond called "Father" and removes 1 tick from the bond progress track.
-* `bond "Mai Lucia"` Adds a bond called "Mai Lucia" and adds 1 tick to the bond progress track.
-
-## Managing Assets
-Adds and updates your character's assets.
-```
-asset <name> <perk>
+lien <nom>
 ```
 ```
-asset <name> <property> {modifier}<value>
-```
-```
-removeAsset <name>
+supprimerLien <nom>
 ```
 
-### Parameters
-* `<name>` The name of the asset.
-* `<perk>` Unlocks the perk in the specified slot.
-* `<property>` The name of an asset property.
-* `{modifier}` How you want the `value` parameter to be applied. The following options can be used:
-    * `+` (Number Only) Adds the specified `value`.
-    * `-` (Number Only) Subtracts the specified `value`.
-    * Not specifying a modifier sets the stat to the specified `value`.
-* `<value>` The value of the property. Can be a number or text.
+### Paramètres
+* `<nom>` Texte décrivant le lien.
 
-### Examples
-* `asset Ritualist` Adds an asset called "Ritualist".
-* `asset Ritualist 1` Unlocks the perk in slot "1" for asset called "Ritualist".
-* `asset Hawk Health 1` Sets the "Health" property to "1" for the asset called "Hawk".
-* `asset Hawk Health +10` Adds "10" to the "Health" property for the asset called "Hawk".
-* `asset Hawk Health -5` Subtracts "5" from the "Health" property for the asset called "Hawk".
-* `asset Wright Specialty Herbalism` Sets the "Specialty" property to "Herbalism" for the asset called "Wright".
-* `removeAsset Wright` Removes the "Wright" asset.
+### Exemples
+* `lien Père` Ajoute un lien nommé "Père" et ajoute une coche sur la jauge de progression de lien.
+* `supprimerLien Père` Supprime un lien nommé "Père" et enlève une coche sur la jauge de progression de lien.
+* `lien "Mai Lucia"` Ajoute un lien nommé "Mai Lucia" et ajoute une coche sur la jauge de progression de lien.
+
+## Gérer les atouts
+Ajouter et modifier les atouts.
+```
+atout <nom> <capacité>
+```
+```
+atout <nom> <propriété> {modificateur}<valeur>
+```
+```
+supprimerAtout <nom>
+```
+
+### Paramètres
+* `<nom>` Le nom de l'atout.
+* `<capacité>` Débloque la capacité à l'emplacement indiqué.
+* `<propriété>` Le nom d'une propriété de l'atout.
+* `{modificateur}` La manière dont vous voulez appliquer le paramètre `valeur`. Les options suivantes sont disponibles :
+    * `+` (Uniquement avec un nombre) Ajoute la `valeur` donnée.
+    * `-` (Uniquement avec un nombre) Enlève la `valeur` donnée.
+    * Sans modificateur, on ajuste la propriété à la `valeur` donnée.
+* `<valeur>` La valeur de la propriété. Peut être un nombre ou du texte.
+
+### Exemples
+* `atout Ritualiste` Ajoute un atout nommé "Ritualiste".
+* `atout Ritualiste 1` Déverouille la capacité numéro 1 de l'atout nommé "Ritualiste".
+* `atout Faucon Santé 1` Ajuste la propriété "Santé" à 1 pour l'atout nommé "Faucon".
+* `atout Faucon Santé +10` Ajoute "10" à la propriété "Santé" pour l'atout nommé "Faucon".
+* `atout Faucon Santé -5` Enlève "5" à la propriété "Santé" pour l'atout nommé "Faucon".
+* `atout Artisan Spécialité Herboriste` Ajuste la propriété "Spécialité" à "Herboriste" pour l'atout nommé "Artisan".
+* `supprimerAtout Artisan` Supprimer l'atout "Artisan".
 
 ## Managing Inventory
 Adds and updates your character's inventory.
