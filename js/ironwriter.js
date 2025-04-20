@@ -1002,7 +1002,7 @@ function createMoment(input, type, index) {
             } else if (args[0] == "progress") {
                 action = progress(args);
                 moment.addAction(action);
-            } else if (args[0] == "rename") {
+            } else if (args[0] == "renommer") {
                 moment.addAction(renameCharacter(args));
             } else if (args[0] == "is") {
                 moment.addAction(addDebility(args));

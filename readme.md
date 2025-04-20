@@ -90,17 +90,17 @@ IronWriter includes a bookmarking system to help you quickly traverse the histor
 ![alt text](/docs/images/bookmarks.jpg)
 
 # Tags
-## Renaming your character
-Renames your character.
+## Renommer le personnage
+Renomme le personnage.
 ```
-rename <character name>
+renommer <nom>
 ```
 ### Parameters
-* `<character name>` The desired name.
+* `<nom>` Le nom voulu.
 
 ### Examples
-* `rename Maura` Sets the character name to "Maura".
-* `rename "Brynn Tahir"` Sets the character name to "Brynn Tahir".
+* `renommer Maura` Change le nom du personnage en "Maura".
+* `renommer "Brynn Tahir"` Change le nom du personnage en "Brynn Tahir".
     
 ## Changing Stats
 Changes a stat's value. Note that the first parameter is not literally "stat" but the stat that you wish to change.
