@@ -23,11 +23,11 @@ const MAX_EXPERIENCE = 30;
 const MAX_PROGRESS = 10;
 
 const CHALLENGE_RANKS = {
-    troublesome: 12,
-    dangerous: 8,
-    formidable: 4,
-    extreme: 2,
-    epic: 1,
+    pénible: 12,
+    dangereux: 8,
+    redoutable: 4,
+    extrême: 2,
+    épique: 1,
 };
 
 const STATS = {
@@ -998,7 +998,7 @@ function createMoment(input, type, index) {
                 moment.addAction(updateInventory(args));
             } else if (args[0] == "removeitem") {
                 moment.addAction(removeInventory(args));
-            } else if (args[0] == "progress") {
+            } else if (args[0] == "progrès") {
                 action = progress(args);
                 moment.addAction(action);
             } else if (args[0] == "renommer") {
@@ -1189,7 +1189,7 @@ function progress(args) {
         }
         progress.action = "tick";
         progress.value = Math.abs(option);
-    } else if (option == "complete") {
+    } else if (option == "complet") {
         // flag as complete
         progress.action = "complete";
     } else {

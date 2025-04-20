@@ -161,35 +161,35 @@ pas <handicap>
 * `est blessé` Ajoute le handicap blessé.
 * `pas blessé` Supprime le handicap blessé.
 
-## Marking Progress
-Starts, compeltes, or marks progress on a specific track.
+## Noter la progression
+Commence, complète ou note la progression sur une jauge donnée.
 ```
-progress <name> {modifier}
+progrès <nom> {modificateur}
 ```
 
-### Parameters
-* `<name>` The name of the progress track.
-* `{modifier}` How you wish to modify the track. The following options can be used:
-    * `complete` Removes the progress track from your character sheet.
-    * `challenge rank` The rank of a new progress track. The following options can be used:
-        * `troublesome` Each progress is 12 ticks.
-        * `dangerous` Each progress is 8 ticks.
-        * `formidable` Each progress is 4 ticks.
-        * `extreme` Each progress is 2 ticks.
-        * `epic` Each progress is 1 ticks.
-    * `{+/-}<value>` The number of ticks to add, remove, or set.
-        * `+` Adds the specified `value`.
-        * `-` Subtracts the specified `value`.
-        * Not specifying a modifier sets the number of ticks to the specified `value`.
-    * Not passing this parameter automatically adds the number of ticks as specified by the `challenge rank`.
+### Paramètre
+* `<nom>` Le nom de la jauge de progrès.
+* `{modificateur}` La manière de modifier la jauge. Les options disponibles sont disponibles :
+    * `complet` Enlever la jauge de progrès de la feuille de personnage.
+    * `rang de défi` Le rang de la nouvelle jauge de progrès. Les options disponibles sont disponibles :
+        * `pénible` Chaque progression est de 12 coches.
+        * `dangereux` Chaque progression est de 8 coches.
+        * `redoutable` Chaque progression est de 4 coches.
+        * `extrême` Chaque progression est de 2 coches.
+        * `épique` Chaque progression est de 1 coches.
+    * `{+/-}<valeur>` Le nombre de coches à ajouter, enlever ou ajuster.
+        * `+` Ajoute la `valeur| donnée.
+        * `-` Enlève la `valeur| donnée. 
+        * Sans modificateur, on ajuste le nombre de coches à la `valeur` donnée.
+    * Sans modificateur, on ajoute automatiquement le nombre de coches correspondantes au `rang de défi`.
 
-### Examples
-* `progress "Kill Martu" formidable` Creates a new progress track called "Kill Martu" and sets it's rank to `formidable`
-* `progress "Kill Martu"` Increases the number of ticks by 4.
-* `progress "Kill Martu" +1` Increases the number of ticks by 1.
-* `progress "Kill Martu" -2` Decreases the number of ticks by 2.
-* `progress "Kill Martu" 8` Sets the number of ticks to 8.
-* `progress "Kill Martu" complete` Removes the progress track called "Kill Martu".
+### Exemples
+* `progrès "Tuer Martu" redoutable` Créer une nouvelle jauge de progression nommée "Tuer Martu" et lui donne le rang `redoutable`.
+* `progrès "Tuer Martu"` Augmente le nombre de coches de 4.
+* `progrès "Tuer Martu" +1` Augmente le nombre de coches de 1.
+* `progrès "Tuer Martu" -2` Diminue le nombre de coches de 2.
+* `progrès "Tuer Martu" 8` Ajuste le nombre de coches à 8.
+* `progrès "Tuer Martu" complet` Supprime la jauge de progression nommée "Tuer Martu".
 
 ## Making Bonds
 Adds a bond to your list of bonds and adds a tick to your bond progress track.
