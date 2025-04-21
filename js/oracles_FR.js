@@ -15,9 +15,8 @@
     You should have received a copy of the GNU General Public License
     along with this program. If not, see https://github.com/SHiLLySiT/IronWriter/blob/master/LICENSE.txt.
 */
-
-const ORACLE = {
-    "Generic Roll": {
+window.ORACLE = {
+    "Lancer générique": {
         1: "1",
         2: "2",
         3: "3",
@@ -119,56 +118,56 @@ const ORACLE = {
         99: "99",
         100: "100",
     },
-    "Almost Certain": {
-        10: "No",
-        100: "Yes",
+    "Presque Certain": {
+        10: "Non",
+        100: "Oui",
     },
-    "Likely": {
-        25: "No",
-        100: "Yes",
+    "Probable": {
+        25: "Non",
+        100: "Oui",
     },
     "50/50": {
-        50: "No",
-        100: "Yes",
+        50: "Non",
+        100: "Oui",
     },
-    "Unlikely": {
-        75: "No",
-        100: "Yes",
+    "Improbable": {
+        75: "Non",
+        100: "Oui",
     },
-    "Small Chance": {
-        90: "No",
-        100: "Yes",
+    "Chance Infime": {
+        90: "Non",
+        100: "Oui",
     },
-    "Endure Harm": {
-        10: "The harm is mortal. Face Death.",
-        20: "You are dying. You need to Heal within an hour or two, or Face Death.",
-        35: "You are unconscious and out of action. If left alone, you come back to your senses in an hour or two. If you are vulnerable to a foe not inclined to show mercy, Face Death.",
-        50: "You are reeling and fighting to stay conscious. If you engage in any vigorous activity (such as running or fighting) before taking a breather for a few minutes, roll on this table again (before resolving the other move).",
-        100: "You are battered but still standing.",
+    "Subir des Dégâts": {
+        10: "Les dégâts sont mortels. Faites Face à la Mort.",
+        20: "Vous êtes mourant. Vous devez parvenir à Guérir dans les deux heures qui suivent, pour ne pas Faire Face à la Mort.",
+        35: "Vous tombez inconscient et êtes hors-jeu. Si l'on vous laisse tranquille, vous retrouvez vos esprits dans une heure ou deux. Si vous êtes à la merci d'un ennemi impitoyable, alors Faites Face à la Mort.",
+        50: "Vous êtes sous le choc et vous luttez pour garder conscience. Si vous persistez à agir vigoureusement (en courant ou en vous battant) avant d'avoir eu quelques minutes de répit, alors refaites un jeu dans ce tableau (avant de résoudre l'action suivante) et appliquez le résultat obtenu.",
+        100: "Vous êtes tuméfié mais toujours debout.",
     },
-    "Endure Stress": {
-        10: "You are overwhelmed. Face Desolation.",
-        25: "You give up. Forsake Your Vow (if possible, one relevant to your current crisis).",
-        50: "You give in to a fear or compulsion, and act against your better instincts.",
-        100: "You persevere.",
+    "Subit un Stress": {
+        10: "Le désespoit vous submerge. Faites Face à la Désolation.",
+        25: "Vous renoncez : Abandonnez votre Voeu (si possible, celui en lien avec votre crise actuelle).",
+        50: "Vous cédez à la peur et à vos pulsions et agissez à l'encontre de vos propres intérêts.",
+        100: "Vous persévérez..",
     },
-    "Pay the Price": {
-        2: "Roll again and apply that result but make it worse. If you roll this result yet again, think of something dreadful that changes the course of your quest (Ask the Oracle if unsure) and make it happen.",
-        5: "A person or community you trusted loses faith in you, or acts against you.",
-        9: "A person or community you care about is exposed to danger.",
-        16: "You are separated from something or someone.",
-        23: "Your action has an unintended effect.",
-        32: "Something of value is lost or destroyed.",
-        41: "The current situation worsens.",
-        50: "A new danger or foe is revealed.",
-        59: "It causes a delay or puts you at a disadvantage.",
-        68: "It is harmful.",
-        76: "It is stressful.",
-        85: "A surprising development complicates your quest.",
-        90: "It wastes resources.",
-        94: "It forces you to act against your best intentions.",
-        98: "A friend, companion, or ally is put in harm’s way (or you are, if alone).",
-        100: "Roll twice more on this table. Both results occur. If they are the same result, make it worse.",
+    "Payer le prix": {
+        2: "Refaites un jet et appliquez son résultat mais en pire. Si vous obtenez deux fois le même résultat, visualisez quelque chose de terrible qui change le cours de votre quête (en cas de doutes, Consultez l'Oracle) et faites-le se produire.",
+        5: "Une personne ou une communauté en laquelle vous aviez confiance perd sa foi en vous ou oeuvre contre vous.",
+        9: "Une personne ou une communauté qui vous tient à coeur est en danger.",
+        16: "Quelques chose de valeur est perdu ou détruit.",
+        23: "Vous êtes séparé de quelque chose ou de quelqu-un.",
+        32: "Quelques chose de valeur est perdu ou détruit",
+        41: "La situation actuelle se met à empirer.",
+        50: "Un nouveau danger ou un nouvel ennemi se révèle.",
+        59: "Cela vous demande un délai ou vous impose un désavantage.",
+        68: "C'est nocif.",
+        76: "C'est stressant.",
+        85: "Un développement surprenant complique votre quête. C'est troublant et vous demande d'agir contre vos instincts : vous subissez une pénalité d'esprit.",
+        90: "C'est un gaspillage de ressources.",
+        94: "Cela vous force à agir à l'encontre de vos intérêts. Un rebondissement ou une menace complique votre quête actuelle.",
+        98: "Un ami, un compagnon ou un allié est mis en danger (ou vous-même, si vous êtes seul).",
+        100: "Refaites un jet dans ce tableau. Les deux résultats s'appliquent. Si vous obtenez deux fois le même, alors faites le empirer.",
     },
     Action: {
         1: "Scheme",

@@ -26,6 +26,10 @@ const BookmarksTabs = [
 	'Tout', 'Liens', 'Fiction & Meta', 'Progrès'
 ]
 
+const EntryTabs = [
+	'Histoire', 'Lancer' , 'Oracle'
+]
+
 const StatNameMenu = {
 	'edge': 'Vivacité',
 	'heart': 'Coeur',
@@ -153,6 +157,29 @@ function translateBookmarksDialog() {
 		}
 	}
 }
+
+function translateEntryTabs(){
+	if (LANG == "FR") {
+		let container =  document.getElementById('entry-tabs');
+		
+		let buttons = container.querySelectorAll('button .mdc-tab__text-label');
+		for (let p of buttons.keys()){
+			buttons[p].textContent = EntryTabs[p];
+		}
+	}
+}
+
+function translateStory(){
+	if (LANG === "FR") {
+		let button = document.getElementById('submit-event')
+		button.querySelector('.mdc-button__label').textContent = "Valider";
+		button.title = "Valider l'évènement (CTRL+Enter)";
+		
+		button  =  document.getElementById('mode-switch');
+		button.title = "Activer Fiction/Meta (CTRL+M)";
+	}
+}
+
 
 function translateCharacterMenu () {
 	if (LANG === "FR") {

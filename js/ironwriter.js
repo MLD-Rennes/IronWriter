@@ -17,11 +17,28 @@
     You should have received a copy of the GNU General Public License
     along with this program. If not, see https://github.com/SHiLLySiT/IronWriter/blob/master/LICENSE.txt.
 */
-
 const VERSION = "0.3.2";
 const LANG = "FR";
 const MAX_EXPERIENCE = 30;
 const MAX_PROGRESS = 10;
+
+function loadOracles(lang){
+	const oldScript = document.querySelector('script[data-dynamic="true"]');
+	if (oldScript) {
+		oldScript.remove();
+	}
+	
+	const newScript = document.createElement('script');
+	newScript.type = 'text/javascript';
+	newScript.src = `js/oracles_${lang}.js`;  // ex: oracles_en.js
+	newScript.setAttribute("data-dynamic", "true");
+	
+	 newScript.onload = function () {
+    };
+
+    document.head.appendChild(newScript);
+}
+
 
 const CHALLENGE_RANKS = {
     troublesome: 12,
@@ -139,6 +156,8 @@ let oldInput = "";
 let oldMode = false;
 
 let scrolledIndex = null;
+
+loadOracles(LANG);
 
 let session = new Session();
 
@@ -261,6 +280,8 @@ function handleInit() {
     initBookmarks();
 	
 	translateHeader();
+	translateEntryTabs();
+	translateStory();
 	translateCharacterMenu();
 	translateStatMenu();
 	translateDebilityMenu();
@@ -398,7 +419,7 @@ function initOracle() {
     let container = template.parentElement;
     template.remove();
 
-    for (let type in ORACLE) {
+    for (let type in window.ORACLE) {
         let item = template.cloneNode(true);
         item.querySelector(".js-value").textContent = type;
         item.addEventListener("click", () => handleSelectOracle(type));
