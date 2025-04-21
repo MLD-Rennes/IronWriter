@@ -209,6 +209,7 @@ function handleInit() {
         };
         confirmDialog.root.addEventListener("MDCDialog:closed", handler);
         confirmDialog.content_.textContent = "Are you sure you want to import a session? Your current session will be lost.";
+		translateImportDialog();
         confirmDialog.open();
     });
 
@@ -225,7 +226,8 @@ function handleInit() {
         };
         confirmDialog.root.addEventListener("MDCDialog:closed", handler);
         confirmDialog.content_.textContent = "Are you sure you want to start a new session? Your current session will be deleted.";
-        confirmDialog.open();
+        translateNewDialog();
+		confirmDialog.open();
     });
 
     document.getElementById("help").addEventListener("click", () => {
@@ -258,6 +260,7 @@ function handleInit() {
     initInventory();
     initBookmarks();
 	
+	translateHeader();
 	translateCharacterMenu();
 	translateStatMenu();
 	translateDebilityMenu();
@@ -480,6 +483,8 @@ function initBookmarks() {
         // While you can pass an object to the `close` call, the docs indicate it should be a string, so...
         bookmarksDialog.close("bookmarkSelected:" + eventIndex);
     });
+	
+	translateBookmarksDialog();
 
     document.getElementById("bookmarks").addEventListener("click", () => {
         bookmarksDialog.open();

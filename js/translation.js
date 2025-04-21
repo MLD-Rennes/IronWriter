@@ -22,6 +22,10 @@ const StatsMenu = [
 	'Caractéristiques', 'Statut', 'Élan'
 ]
 
+const BookmarksTabs = [
+	'Tout', 'Liens', 'Fiction & Meta', 'Progrès'
+]
+
 const StatNameMenu = {
 	'edge': 'Vivacité',
 	'heart': 'Coeur',
@@ -100,6 +104,56 @@ const ProgressOptionMapping = {
 } 
 
 // Translate menu
+function translateHeader() {
+	if (LANG === "FR") {
+		document.getElementById('new').title = "Nouvelle session";
+		document.getElementById('import').title = "Importer session";
+		document.getElementById('export').title = "Exporter session";
+		document.getElementById('bookmarks').title = "Étiquette";
+		document.getElementById('help').title = "Aide";
+	}
+}
+
+function translateConfirmDialog() {
+	if (LANG ===  "FR") {
+		let container =  document.getElementById('confirm-dialog');
+		
+		container.querySelector('#my-dialog-title').textContent = "Confirmation";
+		container.querySelector("button[data-mdc-dialog-action='close']").textContent = "Annuler";
+	}
+}
+
+function translateNewDialog() {
+	translateConfirmDialog();
+	
+	 if (LANG === "FR") {
+		let confirmDialog = document.getElementById("confirm-dialog").MDCDialog;
+		confirmDialog.content_.textContent = "Êtes vous sûr de vouloir créer une nouvelle session ? Votre session actuelle sera supprimée.";
+	 }
+}
+
+function translateImportDialog() {
+	translateConfirmDialog();
+	
+	 if (LANG === "FR") {
+		let confirmDialog = document.getElementById("confirm-dialog").MDCDialog;
+		confirmDialog.content_.textContent = "Êtes vous sûr de vouloir importer une session ? Votre session actuelle sera perdue.";
+	 }
+}
+
+function translateBookmarksDialog() {
+	if (LANG  === "FR") {
+		let container =  document.getElementById('bookmarks-dialog');
+		
+		container.querySelector('h2').textContent = "Étiquette";
+		
+		let buttons = container.querySelectorAll('button .mdc-tab__text-label');
+		for (let p of buttons.keys()) {
+			buttons[p].textContent = BookmarksTabs[p];
+		}
+	}
+}
+
 function translateCharacterMenu () {
 	if (LANG === "FR") {
 		let container =  document.getElementById('character-pane');
