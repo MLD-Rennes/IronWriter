@@ -252,7 +252,8 @@ function handleInit() {
     initInventory();
     initBookmarks();
 	
-	translateStatsMenu();
+	translateStatMenu();
+	translateDebilityMenu();
 
     window.requestAnimationFrame(() => {
         let str = localStorage.getItem("session");
@@ -1153,6 +1154,7 @@ function removeDebility(args) {
     }
 
     let debilityName = args[1].toLowerCase();
+	debilityName = translateDebility(debilityName);
     if (DEBILITIES[debilityName] === undefined) {
         return;
     }
@@ -1166,6 +1168,7 @@ function addDebility(args) {
     }
 
     let debilityName = args[1].toLowerCase();
+	debilityName = translateDebility(debilityName);
     if (DEBILITIES[debilityName] === undefined) {
         return;
     }

@@ -18,7 +18,7 @@
     along with this program. If not, see https://github.com/SHiLLySiT/IronWriter/blob/master/LICENSE.txt.
 */
 
-const StatNameMapping = {
+const StatNameMenu = {
 	'edge': 'Vivacité',
 	'heart': 'Coeur',
 	'iron': 'Fer',
@@ -30,6 +30,18 @@ const StatNameMapping = {
 	'momentum': 'Élan',
 	'momentumMax': "Max",
 	'momentumReset': 'Reset'
+}
+
+const DebilityNameMenu = {
+	'none': 'Aucun',
+	'wounded': 'Blessé',
+	'unprepared': 'Mal préparé',
+	'shaken': 'Secoué',
+	'encumbered': 'Encombré',
+	'maimed': 'Mutilé',
+	'corrupted': 'Corrompu',
+	'cursed': 'Maudit',
+	'tormented': 'Tourmenté'
 }
 
 const StatsMenu = [
@@ -58,10 +70,21 @@ const TagMapping = {
 	'étiquette': 'bookmark'
 }
 
-function translateStatsMenu () {
-	for (let p in StatNameMapping) {
+const DebilityMapping = {
+	'blessé': 'wounded', 
+	'malpréparé': 'unprepared',
+	'secoué': 'shaken',
+	'encombré': 'encumbered',
+	'mutilé': 'maimed',
+	'corrompu': 'corrupted',
+	'maudit': 'cursed', 
+	'tourmenté': 'tormented'
+}
+
+function translateStatMenu () {
+	for (let p in StatNameMenu) {
 		let container = document.getElementById('stat-' + p);
-		container.querySelector('.stat-name').textContent = StatNameMapping[p];
+		container.querySelector('.stat-name').textContent = StatNameMenu[p];
 	}
 	
 	let containers = document.querySelectorAll('.stat-container > div:nth-child(1)');
@@ -74,8 +97,22 @@ function translateStatsMenu () {
 	container.textContent = "Expérience";
 }
 
+function translateDebilityMenu () {
+	for (let p in DebilityNameMenu) {
+		let container = document.getElementById('debility-' + p);
+		container.firstElementChild.textContent = DebilityNameMenu[p];
+	}
+	
+	let container = document.querySelector('.debility-container > div:nth-child(1)');
+	container.textContent = "Handicaps";
+}
+
 function translateTag(input) {
 	return TagMapping[input];
+}
+
+function translateDebility(input) {
+	return DebilityMapping[input];
 }
 	
 	
