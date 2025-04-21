@@ -261,6 +261,7 @@ function handleInit() {
 	translateCharacterMenu();
 	translateStatMenu();
 	translateDebilityMenu();
+	translateProgressMenu();
 
     window.requestAnimationFrame(() => {
         let str = localStorage.getItem("session");
@@ -567,6 +568,7 @@ function createProgressTrack(name, rank, roll) {
     if (name == null && rank == null) {
         newTrack.querySelector(".meta").remove();
     } else {
+		rank = translateProgressRank(rank);
         newTrack.querySelector(".name").textContent = name + " (" + rank + ")";
     }
     return newTrack;
@@ -1193,6 +1195,8 @@ function progress(args) {
     let option = (args[2] === undefined) ? undefined : args[2].toLowerCase();
     let progress = new ProgressAction(id);
     progress.progressName = args[1];
+	
+	option  =  translateProgressOption(option);
 
     if (option === undefined) {
         // mark progress

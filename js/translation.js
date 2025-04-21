@@ -18,6 +18,10 @@
     along with this program. If not, see https://github.com/SHiLLySiT/IronWriter/blob/master/LICENSE.txt.
 */
 
+const StatsMenu = [
+	'Caractéristiques', 'Statut', 'Élan'
+]
+
 const StatNameMenu = {
 	'edge': 'Vivacité',
 	'heart': 'Coeur',
@@ -44,9 +48,14 @@ const DebilityNameMenu = {
 	'tormented': 'Tourmenté'
 }
 
-const StatsMenu = [
-	'Caractéristiques', 'Statut', 'Élan'
-]
+const ProgressRankNameMenu = {
+	'troublesome': 'pénible',
+	'dangerous': 'dangereux',
+	'formidable': 'redoutable',
+	'extreme': 'extrème',
+	'epic': 'épique'
+}
+
 
 const TagMapping = {
 	'vivacité': 'edge',
@@ -81,6 +90,16 @@ const DebilityMapping = {
 	'tourmenté': 'tormented'
 }
 
+const ProgressOptionMapping = {
+	'complet': 'complete',
+	'pénible': 'troublesome',
+	'dangereux': 'dangerous',
+	'redoutable': 'formidable',
+	'extrème': 'extreme',
+	'épique': 'epic'
+}
+
+// Translate menu
 function translateCharacterMenu () {
 	let container =  document.getElementById('character-pane');
 	let element = container.querySelector('h3');
@@ -115,12 +134,35 @@ function translateDebilityMenu () {
 	container.textContent = "Handicaps";
 }
 
+function translateProgressMenu () {
+	container = document.getElementById('progress-card');
+	container.querySelector('h3').textContent = "Jauge de progrès";
+}
+
+function translateProgressRank (input) {
+	return ProgressRankNameMenu[input];
+}
+
+
+// Translate Keywords
 function translateTag(input) {
 	return TagMapping[input];
 }
 
 function translateDebility(input) {
 	return DebilityMapping[input];
+}
+
+function translateProgressOption(input) {
+	if (input === undefined) {
+		return undefined;
+	}
+	else if (!isNaN(input)) {
+		return input;
+	}
+	else {
+		return ProgressOptionMapping[input];
+	}
 }
 	
 	
