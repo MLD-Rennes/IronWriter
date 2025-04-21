@@ -101,90 +101,124 @@ const ProgressOptionMapping = {
 
 // Translate menu
 function translateCharacterMenu () {
-	let container =  document.getElementById('character-pane');
-	let element = container.querySelector('h3');
-	element.textContent = "Personnage";
-	
-	element = container.querySelector('.status-group');
-	element.firstElementChild.textContent = "Nom";
+	if (LANG === "FR") {
+		let container =  document.getElementById('character-pane');
+		let element = container.querySelector('h3');
+		element.textContent = "Personnage";
+		
+		element = container.querySelector('.status-group');
+		element.firstElementChild.textContent = "Nom";
+	}
 }
 
 function translateStatMenu () {
-	for (let p in StatNameMenu) {
-		let container = document.getElementById('stat-' + p);
-		container.querySelector('.stat-name').textContent = StatNameMenu[p];
+	if (LANG === "FR") {
+		for (let p in StatNameMenu) {
+			let container = document.getElementById('stat-' + p);
+			container.querySelector('.stat-name').textContent = StatNameMenu[p];
+		}
+		
+		let containers = document.querySelectorAll('.stat-container > div:nth-child(1)');
+		for (let p of containers.keys()) {
+			containers[p].textContent = StatsMenu[p];
+		}
+		
+		let container = document.querySelector('.experience-container > div:nth-child(1)');
+		container.textContent = "Expérience";
 	}
-	
-	let containers = document.querySelectorAll('.stat-container > div:nth-child(1)');
-	for (let p of containers.keys()) {
-		containers[p].textContent = StatsMenu[p];
-	}
-	
-	let container = document.querySelector('.experience-container > div:nth-child(1)');
-	container.textContent = "Expérience";
 }
 
 function translateDebilityMenu () {
-	for (let p in DebilityNameMenu) {
-		let container = document.getElementById('debility-' + p);
-		container.firstElementChild.textContent = DebilityNameMenu[p];
+	if (LANG === "FR") {
+		for (let p in DebilityNameMenu) {
+			let container = document.getElementById('debility-' + p);
+			container.firstElementChild.textContent = DebilityNameMenu[p];
+		}
+		
+		let container = document.querySelector('.debility-container > div:nth-child(1)');
+		container.textContent = "Handicaps";
 	}
-	
-	let container = document.querySelector('.debility-container > div:nth-child(1)');
-	container.textContent = "Handicaps";
 }
 
 function translateBondsMenu() {
-	container = document.getElementById('bond-card');
-	container.querySelector('h3').textContent = "Liens";
+	if (LANG === "FR") {
+		container = document.getElementById('bond-card');
+		container.querySelector('h3').textContent = "Liens";
+	}
 }
 
 function translateProgressMenu () {
-	container = document.getElementById('progress-card');
-	container.querySelector('h3').textContent = "Jauge de progrès";
+	if (LANG === "FR") {
+		container = document.getElementById('progress-card');
+		container.querySelector('h3').textContent = "Jauge de progrès";
+	}
 }
 
 function translateAssetsMenu() {
-	container = document.getElementById('asset-card');
-	container.querySelector('h3').textContent = "Atouts";
+	if (LANG === "FR") {
+		container = document.getElementById('asset-card');
+		container.querySelector('h3').textContent = "Atouts";
+	}
 }
 
 function translateInventoryMenu(){
-	container = document.getElementById('inventory-card');
-	container.querySelector('h3').textContent = "Inventaire";
+	if (LANG === "FR") {
+		container = document.getElementById('inventory-card');
+		container.querySelector('h3').textContent = "Inventaire";
+	}
 }
 
 function translateProgressRank (input) {
-	return ProgressRankNameMenu[input];
-}
+	if (LANG === "FR") {
+		return ProgressRankNameMenu[input];
+	}
+	
+	return input;
+}	
 
 function translateQuantityProperty(input) {
-	if (input !== "Quantity"){
-		return input;
+	if (LANG === "FR") {
+		if (input !== "Quantity"){
+			return input;
+		}
+		return "Quantité";
 	}
-	return "Quantité";
+	
+	return input;
 }
 
 
 // Translate Keywords
 function translateTag(input) {
-	return TagMapping[input];
+	if (LANG === "FR") {
+		return TagMapping[input];
+	}
+	
+	return input;
 }
 
 function translateDebility(input) {
-	return DebilityMapping[input];
+	if (LANG === "FR") {
+		return DebilityMapping[input];
+	}
+	
+	return input;
 }
 
 function translateProgressOption(input) {
-	if (input === undefined) {
-		return undefined;
+	if (LANG === "FR") {
+		if (input === undefined) {
+			return undefined;
+		}
+		else if (!isNaN(input)) {
+			return input;
+		}
+		else {
+			return ProgressOptionMapping[input];
+		}
 	}
-	else if (!isNaN(input)) {
-		return input;
-	}
-	else {
-		return ProgressOptionMapping[input];
-	}
+	
+	return input;
 }
 	
 	
