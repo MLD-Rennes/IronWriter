@@ -986,6 +986,8 @@ function createMoment(input, type, index) {
 
             // Ignore case for tags
             args[0] = args[0].toLowerCase();
+			// Translate the tag
+			args[0] = translateTag(args[0]);
 
             if (args[0] == "bond") {
                 action = addBond(args);

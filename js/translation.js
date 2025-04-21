@@ -36,6 +36,17 @@ const StatsMenu = [
 	'Caractéristiques', 'Statut', 'Élan'
 ]
 
+const TagMapping = {
+	'vivacité': 'edge',
+	'coeur': 'heart', 
+	'fer': 'iron',
+	'ombre': 'shadow',
+	'astuce': 'wits',
+	'élan': 'momentum',
+	'expérience': 'experience',
+	'expériencedépensée': 'experiencespent'
+}
+
 function translateStatsMenu () {
 	for (let p in StatNameMapping) {
 		let container = document.getElementById('stat-' + p);
@@ -50,6 +61,10 @@ function translateStatsMenu () {
 	
 	let container = document.querySelector('.experience-container > div:nth-child(1)');
 	container.textContent = "Expérience";
+}
+
+function translateTag(input) {
+	return TagMapping[input];
 }
 	
 	
