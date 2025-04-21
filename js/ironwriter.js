@@ -19,6 +19,7 @@
 */
 
 const VERSION = "0.3.2";
+const LANG = "FR";
 const MAX_EXPERIENCE = 30;
 const MAX_PROGRESS = 10;
 
@@ -83,7 +84,12 @@ const BookmarkFilterTypeMapping = {
     1: ['bond', 'unbond'],
     2: ['fiction', 'meta'],
     3: ['progress_add', 'progress_progress', 'progress_complete']
-};
+}
+
+const DefaultCharacterName = {
+	'EN': "New character",
+	'FR': "Nouveau personnage"
+}
 
 let statElements = {};
 for (let p in STATS) {
@@ -252,6 +258,7 @@ function handleInit() {
     initInventory();
     initBookmarks();
 	
+	translateCharacterMenu();
 	translateStatMenu();
 	translateDebilityMenu();
 
@@ -278,7 +285,8 @@ function newSession() {
     session = new Session();
     
     let initialMoment = new Moment("", EventType.None);
-    initialMoment.addAction(new CharacterNameAction("New Character"));
+	
+    initialMoment.addAction(new CharacterNameAction(DefaultCharacterName[LANG]));
     initialMoment.addAction(new StatAction("momentum", "=", 2));
     initialMoment.addAction(new StatAction("momentumReset", "=", 2));
     initialMoment.addAction(new StatAction("momentumMax", "=", 10));

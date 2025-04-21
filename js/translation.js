@@ -81,6 +81,15 @@ const DebilityMapping = {
 	'tourmenté': 'tormented'
 }
 
+function translateCharacterMenu () {
+	let container =  document.getElementById('character-pane');
+	let element = container.querySelector('h3');
+	element.textContent = "Personnage";
+	
+	element = container.querySelector('.status-group');
+	element.firstElementChild.textContent = "Nom";
+}
+
 function translateStatMenu () {
 	for (let p in StatNameMenu) {
 		let container = document.getElementById('stat-' + p);
@@ -88,7 +97,6 @@ function translateStatMenu () {
 	}
 	
 	let containers = document.querySelectorAll('.stat-container > div:nth-child(1)');
-	console.log(containers);
 	for (let p of containers.keys()) {
 		containers[p].textContent = StatsMenu[p];
 	}
