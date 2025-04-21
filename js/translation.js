@@ -44,7 +44,18 @@ const TagMapping = {
 	'astuce': 'wits',
 	'élan': 'momentum',
 	'expérience': 'experience',
-	'expériencedépensée': 'experiencespent'
+	'expériencedépensée': 'experiencespent',
+	'renommer': 'rename',
+	'est': 'is',
+	'pas': 'not',
+	'progrès': 'progress',
+	'lien': 'bond',
+	'supprimerlien': 'unbond',
+	'atout': 'asset',
+	'supprimeratout': 'removeasset',
+	'objet': 'item',
+	'supprimerobjet': 'removeitem',
+	'étiquette': 'bookmark'
 }
 
 function translateStatsMenu () {
