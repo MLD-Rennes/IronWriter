@@ -263,6 +263,7 @@ function handleInit() {
 	translateDebilityMenu();
 	translateBondsMenu();
 	translateProgressMenu();
+	translateAssetsMenu();
 
     window.requestAnimationFrame(() => {
         let str = localStorage.getItem("session");

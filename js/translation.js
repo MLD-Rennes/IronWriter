@@ -144,6 +144,11 @@ function translateProgressMenu () {
 	container.querySelector('h3').textContent = "Jauge de progrès";
 }
 
+function translateAssetsMenu() {
+	container = document.getElementById('asset-card');
+	container.querySelector('h3').textContent = "Atouts";
+}
+
 function translateProgressRank (input) {
 	return ProgressRankNameMenu[input];
 }
