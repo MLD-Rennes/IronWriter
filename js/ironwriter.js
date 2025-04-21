@@ -264,6 +264,7 @@ function handleInit() {
 	translateBondsMenu();
 	translateProgressMenu();
 	translateAssetsMenu();
+	translateInventoryMenu();
 
     window.requestAnimationFrame(() => {
         let str = localStorage.getItem("session");
@@ -527,9 +528,12 @@ function createResource(resource, template) {
         if (resource.properties[p] === undefined) {
             continue;
         }
+		
+		let name = resource.properties[p].name;
+		name = translateQuantityProperty(name);
 
         let e = document.createElement("div");
-        e.textContent = resource.properties[p].name + ": " + resource.properties[p].value;
+        e.textContent = name + ": " + resource.properties[p].value;
         properties.appendChild(e);
     }
 

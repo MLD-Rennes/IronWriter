@@ -97,7 +97,7 @@ const ProgressOptionMapping = {
 	'redoutable': 'formidable',
 	'extrème': 'extreme',
 	'épique': 'epic'
-}
+} 
 
 // Translate menu
 function translateCharacterMenu () {
@@ -149,8 +149,20 @@ function translateAssetsMenu() {
 	container.querySelector('h3').textContent = "Atouts";
 }
 
+function translateInventoryMenu(){
+	container = document.getElementById('inventory-card');
+	container.querySelector('h3').textContent = "Inventaire";
+}
+
 function translateProgressRank (input) {
 	return ProgressRankNameMenu[input];
+}
+
+function translateQuantityProperty(input) {
+	if (input !== "Quantity"){
+		return input;
+	}
+	return "Quantité";
 }
 
 
