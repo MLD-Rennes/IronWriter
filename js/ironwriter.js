@@ -261,6 +261,7 @@ function handleInit() {
 	translateCharacterMenu();
 	translateStatMenu();
 	translateDebilityMenu();
+	translateBondsMenu();
 	translateProgressMenu();
 
     window.requestAnimationFrame(() => {

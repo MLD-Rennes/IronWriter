@@ -134,6 +134,11 @@ function translateDebilityMenu () {
 	container.textContent = "Handicaps";
 }
 
+function translateBondsMenu() {
+	container = document.getElementById('bond-card');
+	container.querySelector('h3').textContent = "Liens";
+}
+
 function translateProgressMenu () {
 	container = document.getElementById('progress-card');
 	container.querySelector('h3').textContent = "Jauge de progrès";
