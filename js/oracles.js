@@ -119,38 +119,38 @@ const ORACLE = {
         99: "99",
         100: "100",
     },
-    "Almost Certain": {
-        10: "No",
-        100: "Yes",
+    "Presque certain": {
+        10: "Non",
+        100: "Oui",
     },
-    "Likely": {
-        25: "No",
-        100: "Yes",
+    "Probable": {
+        25: "Non",
+        100: "Oui",
     },
     "50/50": {
-        50: "No",
-        100: "Yes",
+        50: "Non",
+        100: "Oui",
     },
-    "Unlikely": {
-        75: "No",
-        100: "Yes",
+    "Improbable": {
+        75: "Non",
+        100: "Oui",
     },
-    "Small Chance": {
-        90: "No",
-        100: "Yes",
+    "Chance infime": {
+        90: "Non",
+        100: "Oui",
     },
-    "Endure Harm": {
-        10: "The harm is mortal. Face Death.",
-        20: "You are dying. You need to Heal within an hour or two, or Face Death.",
-        35: "You are unconscious and out of action. If left alone, you come back to your senses in an hour or two. If you are vulnerable to a foe not inclined to show mercy, Face Death.",
-        50: "You are reeling and fighting to stay conscious. If you engage in any vigorous activity (such as running or fighting) before taking a breather for a few minutes, roll on this table again (before resolving the other move).",
-        100: "You are battered but still standing.",
+    "Subir des dégâts": {
+        10: "Les dégâts sont mortels. Faites Face à la Mort.",
+        20: "Vous êtes mourant. Vous devrez parvenir à Guérir dans les deux heures qui suivent, pour ne pas Faire Face à la Mort.",
+        35: "Vous tombez inconscient et êtes hors-jeu. Si l'on vous laisse tranquille, vous retrouverez vos esprits dans une heure ou deux. Si vous êtes à la merci d'un ennemi impitoyable, alors Faites Face à la Mort.",
+        50: "Vous êtes sous le choc et vous luttez pour garder conscience. Si vous persistez à agir vigoureusement (en courant ou en vous battant) avant d'avoir eu quelques minutes de répit, alors refaites un jet dans ce tableau (avant de résoudre l'action suivante) et appliquez le résultat obtenu.",
+        100: "Vous êtes tuméfié mais toujours debout.",
     },
-    "Endure Stress": {
-        10: "You are overwhelmed. Face Desolation.",
-        25: "You give up. Forsake Your Vow (if possible, one relevant to your current crisis).",
-        50: "You give in to a fear or compulsion, and act against your better instincts.",
-        100: "You persevere.",
+    "Subir du stress": {
+        10: "Le désespoir vous submerge. Faites Face à la Désolation.",
+        25: "Vous renoncez : Abandonnez votre Voeu (si possible, celui en lien avec votre crise actuelle).",
+        50: "Vous cédez à la peur ou à vos pulsions et agissez à l'encontre de vos propres intérêts.",
+        100: "Vous persévérez.",
     },
     "Pay the Price": {
         2: "Roll again and apply that result but make it worse. If you roll this result yet again, think of something dreadful that changes the course of your quest (Ask the Oracle if unsure) and make it happen.",
