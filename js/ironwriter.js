@@ -251,6 +251,8 @@ function handleInit() {
     initAssets();
     initInventory();
     initBookmarks();
+	
+	translateStatsMenu();
 
     window.requestAnimationFrame(() => {
         let str = localStorage.getItem("session");
