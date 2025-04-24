@@ -17,6 +17,14 @@
     You should have received a copy of the GNU General Public License
     along with this program. If not, see https://github.com/SHiLLySiT/IronWriter/blob/master/LICENSE.txt.
 */
+let str_weakHit = "Weak Hit";
+let str_strongHit = "Strong Hit";
+let str_miss = "Miss";
+let str_match = "Match";
+let str_challenge = "Challenge";
+let str_action = "Action";
+
+
 class Session {
     constructor() {
         this.version = VERSION;
@@ -451,6 +459,9 @@ class StatAction extends Action {
         if (gameState.stats.momentumReset < 0) {
             gameState.stats.momentumReset = 0;
         }
+		if (gameState.stats.momentumReset > 2) {
+            gameState.stats.momentumReset = 2;
+        }
     }
 
     /**
@@ -740,7 +751,8 @@ class RollAction extends Action {
         super();
         this.type = "RollAction";
         
-        this.statAddName = statAdd;
+        this.statAdd = statAdd;
+		this.statAddName = translateStatAdd(statAdd);
         this.genericAdd = Number(genericAdd);
         this.challenge = [0, 0];
         this.action = 0;
@@ -755,8 +767,8 @@ class RollAction extends Action {
      */
     applyAction(gameState, moment) {
         let statAddValue = 0;
-        if (this.statAddName.length > 0) {
-            statAddValue = gameState.stats[this.statAddName];
+        if (this.statAdd.length > 0) {
+            statAddValue = gameState.stats[this.statAdd];
         }
 
         let actionValue = this.action;
@@ -765,33 +777,33 @@ class RollAction extends Action {
             actionValue = Math.floor(ticks / 4);
         }
 
-        let result = "> Weak Hit";
+        let result = "> " + str_weakHit;
         let totalAction = actionValue + statAddValue + this.genericAdd;
         if (totalAction <= this.challenge[0] && totalAction <= this.challenge[1]) {
-            result = "> Miss"
+            result = "> "+ str_miss
         } else if (totalAction > this.challenge[0] && totalAction > this.challenge[1]) {
-            result = "> Strong Hit"
+            result = "> " + str_strongHit
         }
         if (this.challenge[0] == this.challenge[1]) {
-            result += " (Match)";
+            result += " (" + str_match + ")";
         }
 
-        let challengeOutput = "Challenge: [" + this.challenge[0] + ", " + this.challenge[1] + "]";
+        let challengeOutput = str_challenge + " : [" + this.challenge[0] + ", " + this.challenge[1] + "]";
 
         let actionOutput = undefined;
         if (this.source != "actionDie" && moment.state.progress[this.source] !== undefined) {
-            actionOutput = "Action: " + actionValue + " (" + moment.state.progress[this.source].name + ")";
+            actionOutput = str_action + " : " + actionValue + " (" + moment.state.progress[this.source].name + ")";
         } else {
-            actionOutput = "Action: [" + actionValue + "]";
+            actionOutput = str_action + " : [" + actionValue + "]";
         }
         
-        if (this.statAddName.length > 0) {
+        if (this.statAdd.length > 0) {
             actionOutput += " + " + statAddValue + " (" + this.statAddName + ")";
         }
         if (this.genericAdd > 0) {
             actionOutput += " + " + this.genericAdd;
         }
-        if (this.statAddName.length > 0 || this.genericAdd > 0) {
+        if (this.statAdd.length > 0 || this.genericAdd > 0) {
             actionOutput += " = " + totalAction;
         }
 

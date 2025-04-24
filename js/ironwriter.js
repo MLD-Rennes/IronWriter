@@ -17,10 +17,28 @@
     You should have received a copy of the GNU General Public License
     along with this program. If not, see https://github.com/SHiLLySiT/IronWriter/blob/master/LICENSE.txt.
 */
-
 const VERSION = "0.3.2";
+const LANG = "FR";
 const MAX_EXPERIENCE = 30;
 const MAX_PROGRESS = 10;
+
+function loadOracles(lang){
+	const oldScript = document.querySelector('script[data-dynamic="true"]');
+	if (oldScript) {
+		oldScript.remove();
+	}
+	
+	const newScript = document.createElement('script');
+	newScript.type = 'text/javascript';
+	newScript.src = `js/oracles_${lang}.js`;  // ex: oracles_en.js
+	newScript.setAttribute("data-dynamic", "true");
+	
+	 newScript.onload = function () {
+    };
+
+    document.head.appendChild(newScript);
+}
+
 
 const CHALLENGE_RANKS = {
     troublesome: 12,
@@ -43,7 +61,7 @@ const STATS = {
     momentumMax: 0,
     momentumReset: 0,
     experience: 0,
-    experienceSpent: 0,
+    experiencespent: 0,
     bonds: 0,
 };
 
@@ -83,7 +101,14 @@ const BookmarkFilterTypeMapping = {
     1: ['bond', 'unbond'],
     2: ['fiction', 'meta'],
     3: ['progress_add', 'progress_progress', 'progress_complete']
-};
+}
+
+const DefaultCharacterName = {
+	'EN': "New character",
+	'FR': "Nouveau personnage"
+}
+
+let OracleIndication = "Ask the Oracle"
 
 let statElements = {};
 for (let p in STATS) {
@@ -133,6 +158,8 @@ let oldInput = "";
 let oldMode = false;
 
 let scrolledIndex = null;
+
+loadOracles(LANG);
 
 let session = new Session();
 
@@ -203,6 +230,7 @@ function handleInit() {
         };
         confirmDialog.root.addEventListener("MDCDialog:closed", handler);
         confirmDialog.content_.textContent = "Are you sure you want to import a session? Your current session will be lost.";
+		translateImportDialog();
         confirmDialog.open();
     });
 
@@ -219,7 +247,8 @@ function handleInit() {
         };
         confirmDialog.root.addEventListener("MDCDialog:closed", handler);
         confirmDialog.content_.textContent = "Are you sure you want to start a new session? Your current session will be deleted.";
-        confirmDialog.open();
+        translateNewDialog();
+		confirmDialog.open();
     });
 
     document.getElementById("help").addEventListener("click", () => {
@@ -251,6 +280,20 @@ function handleInit() {
     initAssets();
     initInventory();
     initBookmarks();
+	
+	translateHeader();
+	translateEntryTabs();
+	translateStory();
+	translateCharacterMenu();
+	translateStatMenu();
+	translateDebilityMenu();
+	translateBondsMenu();
+	translateProgressMenu();
+	translateAssetsMenu();
+	translateInventoryMenu();
+	translateRollMenu();
+	translateDoOracle();
+	translateDoRoll();
 
     window.requestAnimationFrame(() => {
         let str = localStorage.getItem("session");
@@ -275,7 +318,8 @@ function newSession() {
     session = new Session();
     
     let initialMoment = new Moment("", EventType.None);
-    initialMoment.addAction(new CharacterNameAction("New Character"));
+	
+    initialMoment.addAction(new CharacterNameAction(DefaultCharacterName[LANG]));
     initialMoment.addAction(new StatAction("momentum", "=", 2));
     initialMoment.addAction(new StatAction("momentumReset", "=", 2));
     initialMoment.addAction(new StatAction("momentumMax", "=", 10));
@@ -361,7 +405,7 @@ function initRoll() {
     let rollSource = document.getElementById("roll-source");
     let rollStats = document.getElementById("roll-stats");
     let rollAdd = document.getElementById("roll-add");
-
+	
     let rollButton = document.getElementById("roll");
     rollButton.addEventListener("click", () => {
         doRoll(rollStats.MDCSelect.value, rollAdd.value, rollSource.MDCSelect.value);
@@ -380,7 +424,7 @@ function initOracle() {
     let container = template.parentElement;
     template.remove();
 
-    for (let type in ORACLE) {
+    for (let type in window.ORACLE) {
         let item = template.cloneNode(true);
         item.querySelector(".js-value").textContent = type;
         item.addEventListener("click", () => handleSelectOracle(type));
@@ -465,6 +509,8 @@ function initBookmarks() {
         // While you can pass an object to the `close` call, the docs indicate it should be a string, so...
         bookmarksDialog.close("bookmarkSelected:" + eventIndex);
     });
+	
+	translateBookmarksDialog();
 
     document.getElementById("bookmarks").addEventListener("click", () => {
         bookmarksDialog.open();
@@ -513,9 +559,12 @@ function createResource(resource, template) {
         if (resource.properties[p] === undefined) {
             continue;
         }
+		
+		let name = resource.properties[p].name;
+		name = translateQuantityProperty(name);
 
         let e = document.createElement("div");
-        e.textContent = resource.properties[p].name + ": " + resource.properties[p].value;
+        e.textContent = name + ": " + resource.properties[p].value;
         properties.appendChild(e);
     }
 
@@ -556,6 +605,7 @@ function createProgressTrack(name, rank, roll) {
     if (name == null && rank == null) {
         newTrack.querySelector(".meta").remove();
     } else {
+		rank = translateProgressRank(rank);
         newTrack.querySelector(".name").textContent = name + " (" + rank + ")";
     }
     return newTrack;
@@ -607,7 +657,7 @@ function handleSelectOracle(type) {
 }
 function doOracleRoll(type) {
     let result = getOracleValue(ORACLE[type]);
-    return "Ask the Oracle (" + type + "): " + result;
+    return  OracleIndication +  " (" + type + "): " + result;
 }
 function getOracleValue(value) {
     if (typeof (value) == "string") {
@@ -817,7 +867,7 @@ function refresh() {
         available.style.display = "none";
 
         if (i < session.state.stats.experience) {
-            if (i < session.state.stats.experienceSpent) {
+            if (i < session.state.stats.experiencespent) {
                 available.style.display = "block";
             } else {
                 spent.style.display = "block";
@@ -984,6 +1034,8 @@ function createMoment(input, type, index) {
 
             // Ignore case for tags
             args[0] = args[0].toLowerCase();
+			// Translate the tag
+			args[0] = translateTag(args[0]);
 
             if (args[0] == "bond") {
                 action = addBond(args);
@@ -1149,6 +1201,7 @@ function removeDebility(args) {
     }
 
     let debilityName = args[1].toLowerCase();
+	debilityName = translateDebility(debilityName);
     if (DEBILITIES[debilityName] === undefined) {
         return;
     }
@@ -1162,6 +1215,7 @@ function addDebility(args) {
     }
 
     let debilityName = args[1].toLowerCase();
+	debilityName = translateDebility(debilityName);
     if (DEBILITIES[debilityName] === undefined) {
         return;
     }
@@ -1178,6 +1232,8 @@ function progress(args) {
     let option = (args[2] === undefined) ? undefined : args[2].toLowerCase();
     let progress = new ProgressAction(id);
     progress.progressName = args[1];
+	
+	option  =  translateProgressOption(option);
 
     if (option === undefined) {
         // mark progress
