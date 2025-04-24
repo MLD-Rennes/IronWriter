@@ -301,5 +301,10 @@ function translateProgressOption(input) {
 	
 	return input;
 }
+
+function translateDoOracle() {
+	OracleIndication = "Consulter l'Oracle";
+
+}
 	
 	

@@ -108,6 +108,8 @@ const DefaultCharacterName = {
 	'FR': "Nouveau personnage"
 }
 
+let OracleIndication = "Ask the Oracle"
+
 let statElements = {};
 for (let p in STATS) {
     statElements[p] = undefined;
@@ -289,6 +291,7 @@ function handleInit() {
 	translateProgressMenu();
 	translateAssetsMenu();
 	translateInventoryMenu();
+	translateDoOracle();
 
     window.requestAnimationFrame(() => {
         let str = localStorage.getItem("session");
@@ -652,7 +655,7 @@ function handleSelectOracle(type) {
 }
 function doOracleRoll(type) {
     let result = getOracleValue(ORACLE[type]);
-    return "Ask the Oracle (" + type + "): " + result;
+    return  OracleIndication +  " (" + type + "): " + result;
 }
 function getOracleValue(value) {
     if (typeof (value) == "string") {
