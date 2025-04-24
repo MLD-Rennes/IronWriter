@@ -1057,13 +1057,19 @@ function createMoment(input, type, index) {
             } else if (args[0] == "rename") {
                 moment.addAction(renameCharacter(args));
             } else if (args[0] == "is") {
-                moment.addAction(addDebility(args));
-                moment.addAction(new StatAction("momentumMax", "-", 1));
-                moment.addAction(new StatAction("momentumReset", "-", 1));
+				let debilityAction = addDebility(args);
+				if (debilityAction !== undefined) {
+					moment.addAction(debilityAction);
+					moment.addAction(new StatAction("momentumMax", "-", 1));
+					moment.addAction(new StatAction("momentumReset", "-", 1));
+				}
             } else if (args[0] == "not") {
-                moment.addAction(removeDebility(args));
-                moment.addAction(new StatAction("momentumMax", "+", 1));
-                moment.addAction(new StatAction("momentumReset", "+", 1));
+				let debilityAction = removeDebility(args);
+				if (debilityAction !== undefined) {
+					moment.addAction(debilityAction);
+					moment.addAction(new StatAction("momentumMax", "+", 1));
+					moment.addAction(new StatAction("momentumReset", "+", 1));
+				}
             } else if (args[0] == "bookmark") {
                 args[2] = type;
                 moment.addAction(addBookmark(args, index));
