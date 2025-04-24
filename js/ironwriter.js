@@ -291,7 +291,9 @@ function handleInit() {
 	translateProgressMenu();
 	translateAssetsMenu();
 	translateInventoryMenu();
+	translateRollMenu();
 	translateDoOracle();
+	translateDoRoll();
 
     window.requestAnimationFrame(() => {
         let str = localStorage.getItem("session");
@@ -403,7 +405,7 @@ function initRoll() {
     let rollSource = document.getElementById("roll-source");
     let rollStats = document.getElementById("roll-stats");
     let rollAdd = document.getElementById("roll-add");
-
+	
     let rollButton = document.getElementById("roll");
     rollButton.addEventListener("click", () => {
         doRoll(rollStats.MDCSelect.value, rollAdd.value, rollSource.MDCSelect.value);

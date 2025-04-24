@@ -74,6 +74,9 @@ const TagMapping = {
 	'élan': 'momentum',
 	'expérience': 'experience',
 	'expériencedépensée': 'experiencespent',
+	'santé': 'health',
+	'provision': 'supply', 
+	'esprit': 'spirit',
 	'renommer': 'rename',
 	'est': 'is',
 	'pas': 'not',
@@ -106,6 +109,17 @@ const ProgressOptionMapping = {
 	'extrème': 'extreme',
 	'épique': 'epic'
 } 
+
+const StatAddNames = {
+	'edge': 'vivacité', 
+	'heart': 'coeur', 
+	'iron': 'fer', 
+	'shadow': 'ombre', 
+	'wits': 'astuce', 
+	'health': 'santé', 
+	'supply': 'provision', 
+	'spirit': 'esprit'
+}
 
 // Translate menu
 function translateHeader() {
@@ -249,6 +263,38 @@ function translateInventoryMenu(){
 	}
 }
 
+function translateRollMenu() {
+	if (LANG == "FR") {
+		// Progress track section 
+		container = document.getElementById('roll-source');
+		container.querySelector('#outlined-label').textContent = "Jauge de progrès (Facultatif)";
+		
+		// Stat add section
+		container = document.getElementById('roll-stats');
+		container.querySelector('#outlined-label').textContent = "Bonus de caractéristique";
+		container.querySelector('li[data-value="edge"]').textContent = "+Vivacité";
+		container.querySelector('li[data-value="heart"]').textContent = "+Coeur";
+		container.querySelector('li[data-value="iron"]').textContent = "+Fer";
+		container.querySelector('li[data-value="shadow"]').textContent = "+Ombre";
+		container.querySelector('li[data-value="wits"]').textContent = "+Astuce";
+		container.querySelector('li[data-value="health"]').textContent = "+Santé";
+		container.querySelector('li[data-value="spirit"]').textContent = "+Esprit";
+		container.querySelector('li[data-value="supply"]').textContent = "+Provision";
+		
+		// Additional Add section
+		container = document.getElementById('roll-add').nextElementSibling;
+		console.log(container);
+		container.querySelector('.mdc-floating-label').textContent = "Autre bonus";
+		
+		// Buttons
+		container = document.getElementById('roll');
+		container.querySelector('.mdc-button__label').textContent = "Lancer";
+		container = document.getElementById('roll-reset');
+		container.title = "Valeurs par défaut";
+		
+	}
+}
+
 function translateProgressRank (input) {
 	if (LANG === "FR") {
 		return ProgressRankNameMenu[input];
@@ -303,8 +349,27 @@ function translateProgressOption(input) {
 }
 
 function translateDoOracle() {
-	OracleIndication = "Consulter l'Oracle";
+	if (LANG === "FR") {
+		OracleIndication = "Consulter l'Oracle";
+	}
+}
 
+function translateDoRoll(){
+	if (LANG == "FR") {
+		str_weakHit = "Coup Faible";
+		str_strongHit = "Coup Fort";
+		str_miss = "Échec";
+		str_challenge = "Défi";
+	}
 }
 	
+	
+function translateStatAdd(input){
+	if (LANG === "FR"){
+		if (input in StatAddNames){
+			return StatAddNames[input];
+		}
+	}
+	return input
+}
 	
