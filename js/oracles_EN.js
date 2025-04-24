@@ -16,8 +16,8 @@
     along with this program. If not, see https://github.com/SHiLLySiT/IronWriter/blob/master/LICENSE.txt.
 */
 
-const ORACLE = {
-    "Generic Roll": {
+window.ORACLE = {
+    "Generic roll": {
         1: "1",
         2: "2",
         3: "3",
