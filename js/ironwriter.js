@@ -61,7 +61,7 @@ const STATS = {
     momentumMax: 0,
     momentumReset: 0,
     experience: 0,
-    experiencespent: 0,
+    experienceSpent: 0,
     bonds: 0,
 };
 
@@ -867,7 +867,7 @@ function refresh() {
         available.style.display = "none";
 
         if (i < session.state.stats.experience) {
-            if (i < session.state.stats.experiencespent) {
+            if (i < session.state.stats.experienceSpent) {
                 available.style.display = "block";
             } else {
                 spent.style.display = "block";
