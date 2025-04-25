@@ -18,7 +18,7 @@
     along with this program. If not, see https://github.com/SHiLLySiT/IronWriter/blob/master/LICENSE.txt.
 */
 const VERSION = "0.3.2";
-const LANG = "FR";
+const LANG = "EN";
 const MAX_EXPERIENCE = 30;
 const MAX_PROGRESS = 10;
 
@@ -1045,11 +1045,11 @@ function createMoment(input, type, index) {
                 moment.addAction(action);
             } else if (args[0] == "asset") {
                 moment.addAction(updateAsset(args));
-            } else if (args[0] == "removeasset") {
+            } else if (args[0] == "removeAsset") {
                 moment.addAction(removeAsset(args));
             } else if (args[0] == "item") {
                 moment.addAction(updateInventory(args));
-            } else if (args[0] == "removeitem") {
+            } else if (args[0] == "removeItem") {
                 moment.addAction(removeInventory(args));
             } else if (args[0] == "progress") {
                 action = progress(args);
