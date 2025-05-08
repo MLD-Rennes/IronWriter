@@ -1070,6 +1070,8 @@ function createMoment(input, type, index) {
 					moment.addAction(new StatAction("momentumMax", "+", 1));
 					moment.addAction(new StatAction("momentumReset", "+", 1));
 				}
+			} else if (args[0] == "burnMomentum") {
+				moment.addAction(burnMomentum());
             } else if (args[0] == "bookmark") {
                 args[2] = type;
                 moment.addAction(addBookmark(args, index));
@@ -1139,6 +1141,12 @@ function removeAsset(args) {
     action.assetName = args[1];
     return action;
 
+}
+
+function burnMomentum() {
+	let reset_value = session.state.stats['momentumReset'];
+	let action =  changeStat(['momentum', reset_value]);
+	return action
 }
 
 function updateInventory(args) {

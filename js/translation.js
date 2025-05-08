@@ -80,6 +80,7 @@ const TagMapping = {
 		'experiencespent': 'experienceSpent',
 		'removeasset': 'removeAsset',
 		'removeitem': 'removeItem',
+		'burnmomentum': 'burnMomentum'
 	},
 	'FR': {
 		'vivacité': 'edge',
@@ -103,7 +104,8 @@ const TagMapping = {
 		'supprimeratout': 'removeAsset',
 		'objet': 'item',
 		'supprimerobjet': 'removeItem',
-		'étiquette': 'bookmark'
+		'étiquette': 'bookmark',
+		'brûlerélan': 'burnMomentum'
 	}
 }
 
