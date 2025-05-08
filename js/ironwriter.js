@@ -1045,11 +1045,11 @@ function createMoment(input, type, index) {
                 moment.addAction(action);
             } else if (args[0] == "asset") {
                 moment.addAction(updateAsset(args));
-            } else if (args[0] == "removeasset") {
+            } else if (args[0] == "removeAsset") {
                 moment.addAction(removeAsset(args));
             } else if (args[0] == "item") {
                 moment.addAction(updateInventory(args));
-            } else if (args[0] == "removeitem") {
+            } else if (args[0] == "removeItem") {
                 moment.addAction(removeInventory(args));
             } else if (args[0] == "progress") {
                 action = progress(args);
@@ -1057,13 +1057,19 @@ function createMoment(input, type, index) {
             } else if (args[0] == "rename") {
                 moment.addAction(renameCharacter(args));
             } else if (args[0] == "is") {
-                moment.addAction(addDebility(args));
-                moment.addAction(new StatAction("momentumMax", "-", 1));
-                moment.addAction(new StatAction("momentumReset", "-", 1));
+				let debilityAction = addDebility(args);
+				if (debilityAction !== undefined) {
+					moment.addAction(debilityAction);
+					moment.addAction(new StatAction("momentumMax", "-", 1));
+					moment.addAction(new StatAction("momentumReset", "-", 1));
+				}
             } else if (args[0] == "not") {
-                moment.addAction(removeDebility(args));
-                moment.addAction(new StatAction("momentumMax", "+", 1));
-                moment.addAction(new StatAction("momentumReset", "+", 1));
+				let debilityAction = removeDebility(args);
+				if (debilityAction !== undefined) {
+					moment.addAction(debilityAction);
+					moment.addAction(new StatAction("momentumMax", "+", 1));
+					moment.addAction(new StatAction("momentumReset", "+", 1));
+				}
             } else if (args[0] == "bookmark") {
                 args[2] = type;
                 moment.addAction(addBookmark(args, index));

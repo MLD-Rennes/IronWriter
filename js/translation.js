@@ -17,108 +17,131 @@
     You should have received a copy of the GNU General Public License
     along with this program. If not, see https://github.com/SHiLLySiT/IronWriter/blob/master/LICENSE.txt.
 */
+const StatsMenu = {
+	'FR': [
+		'Caractéristiques', 'Statut', 'Élan'
+	]
+}
 
-const StatsMenu = [
-	'Caractéristiques', 'Statut', 'Élan'
-]
+const BookmarksTabs = {
+	'FR': [
+		'Tout', 'Liens', 'Fiction & Meta', 'Progrès'
+	]
+}
 
-const BookmarksTabs = [
-	'Tout', 'Liens', 'Fiction & Meta', 'Progrès'
-]
-
-const EntryTabs = [
-	'Histoire', 'Lancer' , 'Oracle'
-]
+const EntryTabs = {
+	'FR': [
+		'Histoire', 'Lancer' , 'Oracle'
+	]
+}
 
 const StatNameMenu = {
-	'edge': 'Vivacité',
-	'heart': 'Coeur',
-	'iron': 'Fer',
-	'shadow': 'Ombre',
-	'wits': 'Astuce',
-	'health': 'Santé',
-	'spirit': 'Esprit',
-	'supply': 'Provision',
-	'momentum': 'Élan',
-	'momentumMax': "Max",
-	'momentumReset': 'Reset'
+	'FR': {
+		'edge': 'Vivacité',
+		'heart': 'Coeur',
+		'iron': 'Fer',
+		'shadow': 'Ombre',
+		'wits': 'Astuce',
+		'health': 'Santé',
+		'spirit': 'Esprit',
+		'supply': 'Provision',
+		'momentum': 'Élan',
+		'momentumMax': "Max",
+		'momentumReset': 'Reset'
+	}
 }
 
 const DebilityNameMenu = {
-	'none': 'Aucun',
-	'wounded': 'Blessé',
-	'unprepared': 'Mal préparé',
-	'shaken': 'Secoué',
-	'encumbered': 'Encombré',
-	'maimed': 'Mutilé',
-	'corrupted': 'Corrompu',
-	'cursed': 'Maudit',
-	'tormented': 'Tourmenté'
+	'FR': {
+		'none': 'Aucun',
+		'wounded': 'Blessé',
+		'unprepared': 'Mal préparé',
+		'shaken': 'Secoué',
+		'encumbered': 'Encombré',
+		'maimed': 'Mutilé',
+		'corrupted': 'Corrompu',
+		'cursed': 'Maudit',
+		'tormented': 'Tourmenté'
+	}
 }
 
 const ProgressRankNameMenu = {
-	'troublesome': 'pénible',
-	'dangerous': 'dangereux',
-	'formidable': 'redoutable',
-	'extreme': 'extrème',
-	'epic': 'épique'
+	'FR': {
+		'troublesome': 'pénible',
+		'dangerous': 'dangereux',
+		'formidable': 'redoutable',
+		'extreme': 'extrème',
+		'epic': 'épique'
+	}
 }
 
-
 const TagMapping = {
-	'vivacité': 'edge',
-	'coeur': 'heart', 
-	'fer': 'iron',
-	'ombre': 'shadow',
-	'astuce': 'wits',
-	'élan': 'momentum',
-	'expérience': 'experience',
-	'expériencedépensée': 'experiencespent',
-	'santé': 'health',
-	'provision': 'supply', 
-	'esprit': 'spirit',
-	'renommer': 'rename',
-	'est': 'is',
-	'pas': 'not',
-	'progrès': 'progress',
-	'lien': 'bond',
-	'supprimerlien': 'unbond',
-	'atout': 'asset',
-	'supprimeratout': 'removeasset',
-	'objet': 'item',
-	'supprimerobjet': 'removeitem',
-	'étiquette': 'bookmark'
+	'EN': {
+		'experiencespent': 'experienceSpent',
+		'removeasset': 'removeAsset',
+		'removeitem': 'removeItem',
+	},
+	'FR': {
+		'vivacité': 'edge',
+		'coeur': 'heart', 
+		'fer': 'iron',
+		'ombre': 'shadow',
+		'astuce': 'wits',
+		'élan': 'momentum',
+		'expérience': 'experience',
+		'expériencedépensée': 'experienceSpent',
+		'santé': 'health',
+		'provision': 'supply', 
+		'esprit': 'spirit',
+		'renommer': 'rename',
+		'est': 'is',
+		'pas': 'not',
+		'progrès': 'progress',
+		'lien': 'bond',
+		'supprimerlien': 'unbond',
+		'atout': 'asset',
+		'supprimeratout': 'removeAsset',
+		'objet': 'item',
+		'supprimerobjet': 'removeItem',
+		'étiquette': 'bookmark'
+	}
 }
 
 const DebilityMapping = {
-	'blessé': 'wounded', 
-	'malpréparé': 'unprepared',
-	'secoué': 'shaken',
-	'encombré': 'encumbered',
-	'mutilé': 'maimed',
-	'corrompu': 'corrupted',
-	'maudit': 'cursed', 
-	'tourmenté': 'tormented'
+	'FR': {
+		'blessé': 'wounded', 
+		'malpréparé': 'unprepared',
+		'secoué': 'shaken',
+		'encombré': 'encumbered',
+		'mutilé': 'maimed',
+		'corrompu': 'corrupted',
+		'maudit': 'cursed', 
+		'tourmenté': 'tormented'
+	}
 }
 
 const ProgressOptionMapping = {
-	'complet': 'complete',
-	'pénible': 'troublesome',
-	'dangereux': 'dangerous',
-	'redoutable': 'formidable',
-	'extrème': 'extreme',
-	'épique': 'epic'
-} 
+	'FR': {
+		'complet': 'complete',
+		'pénible': 'troublesome',
+		'dangereux': 'dangerous',
+		'redoutable': 'formidable',
+		'extrème': 'extreme',
+		'épique': 'epic'
+	} 
+}
 
 const StatAddNames = {
-	'edge': 'vivacité', 
-	'heart': 'coeur', 
-	'iron': 'fer', 
-	'shadow': 'ombre', 
-	'wits': 'astuce', 
-	'health': 'santé', 
-	'supply': 'provision', 
-	'spirit': 'esprit'
+	'FR': {
+		'edge': 'vivacité', 
+		'heart': 'coeur', 
+		'iron': 'fer', 
+		'shadow': 'ombre', 
+		'wits': 'astuce', 
+		'health': 'santé', 
+		'supply': 'provision', 
+		'spirit': 'esprit'
+	}
 }
 
 // Translate menu
@@ -160,26 +183,24 @@ function translateImportDialog() {
 }
 
 function translateBookmarksDialog() {
-	if (LANG  === "FR") {
-		let container =  document.getElementById('bookmarks-dialog');
-		
+	let container =  document.getElementById('bookmarks-dialog');
+	
+	let buttons = container.querySelectorAll('button .mdc-tab__text-label');
+	for (let p of buttons.keys()) {
+		buttons[p].textContent = (BookmarksTabs[LANG] !== undefined) ? BookmarksTabs[LANG][p] : buttons[p].textContent;
+	}
+	
+	if (LANG === 'FR') {
 		container.querySelector('h2').textContent = "Étiquette";
-		
-		let buttons = container.querySelectorAll('button .mdc-tab__text-label');
-		for (let p of buttons.keys()) {
-			buttons[p].textContent = BookmarksTabs[p];
-		}
 	}
 }
 
 function translateEntryTabs(){
-	if (LANG == "FR") {
-		let container =  document.getElementById('entry-tabs');
+	let container =  document.getElementById('entry-tabs');
 		
-		let buttons = container.querySelectorAll('button .mdc-tab__text-label');
-		for (let p of buttons.keys()){
-			buttons[p].textContent = EntryTabs[p];
-		}
+	let buttons = container.querySelectorAll('button .mdc-tab__text-label');
+	for (let p of buttons.keys()){
+		buttons[p].textContent = (EntryTabs[LANG] !== undefined) ? EntryTabs[LANG][p] : buttons[p].textContent;
 	}
 }
 
@@ -207,15 +228,16 @@ function translateCharacterMenu () {
 }
 
 function translateStatMenu () {
-	if (LANG === "FR") {
-		for (let p in StatNameMenu) {
+	if (StatNameMenu[LANG] !== undefined) {
+		for (let p in StatNameMenu[LANG]) {
 			let container = document.getElementById('stat-' + p);
-			container.querySelector('.stat-name').textContent = StatNameMenu[p];
+			container.querySelector('.stat-name').textContent = StatNameMenu[LANG][p];
 		}
-		
+	}
+	if (LANG === "FR") {
 		let containers = document.querySelectorAll('.stat-container > div:nth-child(1)');
 		for (let p of containers.keys()) {
-			containers[p].textContent = StatsMenu[p];
+			containers[p].textContent = StatsMenu[LANG][p];
 		}
 		
 		let container = document.querySelector('.experience-container > div:nth-child(1)');
@@ -224,12 +246,14 @@ function translateStatMenu () {
 }
 
 function translateDebilityMenu () {
-	if (LANG === "FR") {
-		for (let p in DebilityNameMenu) {
-			let container = document.getElementById('debility-' + p);
-			container.firstElementChild.textContent = DebilityNameMenu[p];
-		}
+	if (DebilityNameMenu[LANG] !== undefined) {
+		for (let p in DebilityNameMenu[LANG]) {
+				let container = document.getElementById('debility-' + p);
+				container.firstElementChild.textContent = DebilityNameMenu[LANG][p];
+			}
+	}
 		
+	if (LANG === "FR") {
 		let container = document.querySelector('.debility-container > div:nth-child(1)');
 		container.textContent = "Handicaps";
 	}
@@ -283,7 +307,6 @@ function translateRollMenu() {
 		
 		// Additional Add section
 		container = document.getElementById('roll-add').nextElementSibling;
-		console.log(container);
 		container.querySelector('.mdc-floating-label').textContent = "Autre bonus";
 		
 		// Buttons
@@ -296,11 +319,7 @@ function translateRollMenu() {
 }
 
 function translateProgressRank (input) {
-	if (LANG === "FR") {
-		return ProgressRankNameMenu[input];
-	}
-	
-	return input;
+	return (ProgressRankNameMenu[LANG] != undefined) ? ProgressRankNameMenu[LANG][input] : input;
 }	
 
 function translateQuantityProperty(input) {
@@ -317,35 +336,23 @@ function translateQuantityProperty(input) {
 
 // Translate Keywords
 function translateTag(input) {
-	if (LANG === "FR") {
-		return TagMapping[input];
-	}
-	
-	return input;
+	return (TagMapping[LANG] !== undefined & TagMapping[LANG][input] !== undefined) ? TagMapping[LANG][input] : input;
 }
 
 function translateDebility(input) {
-	if (LANG === "FR") {
-		return DebilityMapping[input];
-	}
-	
-	return input;
+	return (DebilityMapping[LANG] !=  undefined) ? DebilityMapping[LANG][input] : input;
 }
 
 function translateProgressOption(input) {
-	if (LANG === "FR") {
-		if (input === undefined) {
-			return undefined;
-		}
-		else if (!isNaN(input)) {
-			return input;
-		}
-		else {
-			return ProgressOptionMapping[input];
-		}
+	if (input === undefined) {
+		return undefined;
 	}
-	
-	return input;
+	else if (!isNaN(input)) {
+		return input;
+	}
+	else {
+		return (ProgressOptionMapping[LANG] !== undefined) ? ProgressOptionMapping[LANG][input] :  input;
+	}
 }
 
 function translateDoOracle() {
@@ -365,11 +372,9 @@ function translateDoRoll(){
 	
 	
 function translateStatAdd(input){
-	if (LANG === "FR"){
-		if (input in StatAddNames){
-			return StatAddNames[input];
-		}
+	if (input in StatAddNames){
+		return (StatAddNames[LANG] !== undefined) ? StatAddNames[LANG][input] : input;
 	}
-	return input
+
 }
 	
