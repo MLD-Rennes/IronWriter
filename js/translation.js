@@ -372,9 +372,7 @@ function translateDoRoll(){
 	
 	
 function translateStatAdd(input){
-	if (input in StatAddNames){
-		return (StatAddNames[LANG] !== undefined) ? StatAddNames[LANG][input] : input;
-	}
+	return (StatAddNames[LANG] !== undefined) ? StatAddNames[LANG][input] : input;
 
 }
 	
