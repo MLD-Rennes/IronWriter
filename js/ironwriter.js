@@ -16,6 +16,8 @@
 
     You should have received a copy of the GNU General Public License
     along with this program. If not, see https://github.com/SHiLLySiT/IronWriter/blob/master/LICENSE.txt.
+	TODO : Add a configuration file for the languages and other parameters.
+	TODO : Negative momentum throw away a dice
 */
 const VERSION = "0.3.2";
 const LANG = "FR";
@@ -229,8 +231,8 @@ function handleInit() {
             }
         };
         confirmDialog.root.addEventListener("MDCDialog:closed", handler);
-        confirmDialog.content_.textContent = "Are you sure you want to import a session? Your current session will be lost.";
-		translateImportDialog();
+        confirmDialog.content_.textContent = ConfirmDialogMessage[LANG]['import'];
+		translateConfirmDialog();
         confirmDialog.open();
     });
 
@@ -246,8 +248,8 @@ function handleInit() {
             }
         };
         confirmDialog.root.addEventListener("MDCDialog:closed", handler);
-        confirmDialog.content_.textContent = "Are you sure you want to start a new session? Your current session will be deleted.";
-        translateNewDialog();
+        confirmDialog.content_.textContent = ConfirmDialogMessage[LANG]['new'];
+		translateConfirmDialog();
 		confirmDialog.open();
     });
 
@@ -320,9 +322,9 @@ function newSession() {
     let initialMoment = new Moment("", EventType.None);
 	
     initialMoment.addAction(new CharacterNameAction(DefaultCharacterName[LANG]));
-    initialMoment.addAction(new StatAction("momentum", "=", 2));
-    initialMoment.addAction(new StatAction("momentumReset", "=", 2));
+	initialMoment.addAction(new StatAction("momentumReset", "=", 2));
     initialMoment.addAction(new StatAction("momentumMax", "=", 10));
+    initialMoment.addAction(new StatAction("momentum", "=", 2));
     initialMoment.addAction(new StatAction("health", "=", 5));
     initialMoment.addAction(new StatAction("supply", "=", 5));
     initialMoment.addAction(new StatAction("spirit", "=", 5));
@@ -707,12 +709,18 @@ function createEvent(content, type) {
     let newEvent = undefined;
     if (type == EventType.Meta) {
         newEvent = metaEventTemplate.cloneNode(true);
+		let buttonsTitle = ['delete', 'edit'];
+		buttonsTitle.forEach((input) => newEvent.querySelector("." + input + " .fas").title = translateRollEventButtons(input));
         newEvent.querySelector(".edit").addEventListener("click", () => handleEditEvent(newEvent));
         newEvent.querySelector(".reroll").remove();
+		newEvent.querySelector(".burn").remove();
     } else if (type == EventType.Roll) {
         newEvent = metaEventTemplate.cloneNode(true);
+		let buttonsTitle = ['delete', 'reroll', 'burn']
+		buttonsTitle.forEach((input) => newEvent.querySelector("." + input + " .fas").title = translateRollEventButtons(input));
         newEvent.querySelector(".reroll").addEventListener("click", () => handleRerollEvent(newEvent));
         newEvent.querySelector(".edit").remove();
+		newEvent.querySelector(".burn").addEventListener("click", () => handleBurnEvent(newEvent));
     } else if (type == EventType.Fiction) {
         newEvent = fictionEventTemplate.cloneNode(true);
         newEvent.querySelector(".edit").addEventListener("click", () => handleEditEvent(newEvent));
@@ -746,6 +754,37 @@ function handleRerollEvent(eventElement) {
     }
     eventElement.querySelector(".content").innerText = moment.input;
 }
+
+function handleBurnEvent(eventElement) {
+	let moment = session.history[eventElement.dataset.index];
+	let newMoment = new Moment("", EventType.Roll);
+	let action = moment.actions[0];
+	if (action instanceof RollAction) {
+		session.gotoMoment(eventElement.dataset.index - 1);
+		
+		newMoment.addAction(action);
+		action.burnRoll();
+		if (action.burnt) {			
+			newMoment.addAction(new StatAction("momentum", "", session.state.stats['momentumReset']));
+		}
+		
+		if (action.burnt){
+			eventElement.querySelector(".burn .fas").title = translateRollEventButtons("unburn");
+		}
+		else {
+			eventElement.querySelector(".burn .fas").title = translateRollEventButtons("burn");
+		}
+		
+		session.updateMoment(eventElement.dataset.index, newMoment);
+		session.gotoPresentMoment();
+	}
+	else {
+		console.log("Unable to burn roll " + typeof(action));
+	}
+	eventElement.querySelector(".content").innerText = newMoment.input;
+	refresh();
+}
+
 
 function handleEditEvent(eventElement) {
     submitButton.style.display = "none";
@@ -838,7 +877,8 @@ function handleDeleteEvent(eventElement) {
         refresh();
     };
     confirmDialog.root.addEventListener("MDCDialog:closed", handler);
-    confirmDialog.content_.textContent = "Are you sure you want to delete this event?";
+    confirmDialog.content_.textContent = ConfirmDialogMessage[LANG]['delete'];
+	translateConfirmDialog();
     confirmDialog.open();
 }
 
@@ -1070,9 +1110,7 @@ function createMoment(input, type, index) {
 					moment.addAction(new StatAction("momentumMax", "+", 1));
 					moment.addAction(new StatAction("momentumReset", "+", 1));
 				}
-			} else if (args[0] == "burnMomentum") {
-				moment.addAction(burnMomentum());
-            } else if (args[0] == "bookmark") {
+			} else if (args[0] == "bookmark") {
                 args[2] = type;
                 moment.addAction(addBookmark(args, index));
             } else if (STATS[args[0]] !== undefined) {
@@ -1143,11 +1181,6 @@ function removeAsset(args) {
 
 }
 
-function burnMomentum() {
-	let reset_value = session.state.stats['momentumReset'];
-	let action =  changeStat(['momentum', reset_value]);
-	return action
-}
 
 function updateInventory(args) {
     if (args[1] == undefined) {

@@ -35,6 +35,19 @@ const EntryTabs = {
 	]
 }
 
+const ConfirmDialogMessage = {
+	'EN': {
+		'import': "Are you sure you want to import a session? Your current session will be lost.",
+		'new': "Are you sure you want to start a new session? Your current session will be deleted.",
+		'delete': "Are you sure you want to delete this event?"
+	},
+	'FR': {
+		'import': "Êtes vous-sûr d'importer une session ? Votre session actuelle sera perdue.",
+		'new': "Êtes vous sûr de vouloir créer une nouvelle session ? Votre session actuelle sera supprimée.",
+		'delete': "Voulez-vous supprimer cet évènement ?"
+	}
+}
+
 const StatNameMenu = {
 	'FR': {
 		'edge': 'Vivacité',
@@ -146,6 +159,27 @@ const StatAddNames = {
 	}
 }
 
+const BurnRollTitle = {
+	'EN': 'Momentum burnt',
+	'FR': 'Élan brûlé'
+}
+
+const ButtonsTitle = {
+	'EN': {
+		'edit': "Edit",
+		'delete': "Edit",
+		'reroll': "Reroll",
+		'burn': "Burn",
+		'unburn': "Unburn",
+	},
+	'FR': {
+		'edit': "Editer",
+		'delete': "Supprimer",
+		'reroll': "Relancer",
+		'burn': "Brûler",
+		'unburn': "Annuler",
+	}
+}
 // Translate menu
 function translateHeader() {
 	if (LANG === "FR") {
@@ -166,24 +200,6 @@ function translateConfirmDialog() {
 	}
 }
 
-function translateNewDialog() {
-	translateConfirmDialog();
-	
-	 if (LANG === "FR") {
-		let confirmDialog = document.getElementById("confirm-dialog").MDCDialog;
-		confirmDialog.content_.textContent = "Êtes vous sûr de vouloir créer une nouvelle session ? Votre session actuelle sera supprimée.";
-	 }
-}
-
-function translateImportDialog() {
-	translateConfirmDialog();
-	
-	 if (LANG === "FR") {
-		let confirmDialog = document.getElementById("confirm-dialog").MDCDialog;
-		confirmDialog.content_.textContent = "Êtes vous sûr de vouloir importer une session ? Votre session actuelle sera perdue.";
-	 }
-}
-
 function translateBookmarksDialog() {
 	let container =  document.getElementById('bookmarks-dialog');
 	
@@ -194,6 +210,7 @@ function translateBookmarksDialog() {
 	
 	if (LANG === 'FR') {
 		container.querySelector('h2').textContent = "Étiquette";
+		container.querySelector('footer span').textContent = "Fermer";
 	}
 }
 
@@ -203,6 +220,11 @@ function translateEntryTabs(){
 	let buttons = container.querySelectorAll('button .mdc-tab__text-label');
 	for (let p of buttons.keys()){
 		buttons[p].textContent = (EntryTabs[LANG] !== undefined) ? EntryTabs[LANG][p] : buttons[p].textContent;
+	}
+	
+	if (LANG === 'FR') {
+		document.getElementById('cancel-event').querySelector('.mdc-button__label').textContent = "Annuler";
+		document.getElementById('save-event').querySelector('.mdc-button__label').textContent = "Enregistrer";
 	}
 }
 
@@ -378,3 +400,8 @@ function translateStatAdd(input){
 
 }
 	
+// Translate buttons
+
+function translateRollEventButtons(input) {
+	return (ButtonsTitle[LANG] !== undefined & ButtonsTitle[LANG][input] !== undefined) ? ButtonsTitle[LANG][input] : input;
+}

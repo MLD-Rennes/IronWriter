@@ -462,6 +462,12 @@ class StatAction extends Action {
 		if (gameState.stats.momentumReset > 2) {
             gameState.stats.momentumReset = 2;
         }
+		if (gameState.stats.momentum < -6) {
+			gameState.stats.momentum = -6;
+		}
+		if (gameState.stats.momentum > gameState.stats.momentumMax) {
+			gameState.stats.momentum = gameState.stats.momentumMax;
+		}
     }
 
     /**
@@ -757,6 +763,7 @@ class RollAction extends Action {
         this.challenge = [0, 0];
         this.action = 0;
         this.source = source;
+		this.burnt = false;
         
         this.reroll();
     }
@@ -776,19 +783,30 @@ class RollAction extends Action {
             let ticks = moment.state.progress[this.source].value;
             actionValue = Math.floor(ticks / 4);
         }
+		
+		let challenge = JSON.parse(JSON.stringify(this.challenge));
+		
+		if (this.burnt === true) {
+			let momentum = moment.state.stats.momentum;
+			for (let i=0;i<2;i++) {
+				if (challenge[i] < momentum) {
+					challenge[i] = 0;
+				}
+			}
+		}
 
         let result = "> " + str_weakHit;
         let totalAction = actionValue + statAddValue + this.genericAdd;
-        if (totalAction <= this.challenge[0] && totalAction <= this.challenge[1]) {
+        if (totalAction <= challenge[0] && totalAction <= challenge[1]) {
             result = "> "+ str_miss
-        } else if (totalAction > this.challenge[0] && totalAction > this.challenge[1]) {
+        } else if (totalAction > challenge[0] && totalAction > challenge[1]) {
             result = "> " + str_strongHit
         }
         if (this.challenge[0] == this.challenge[1]) {
             result += " (" + str_match + ")";
         }
 
-        let challengeOutput = str_challenge + " : [" + this.challenge[0] + ", " + this.challenge[1] + "]";
+        let challengeOutput = str_challenge + " : [" + challenge[0] + ", " + challenge[1] + "]";
 
         let actionOutput = undefined;
         if (this.source != "actionDie" && moment.state.progress[this.source] !== undefined) {
@@ -806,8 +824,13 @@ class RollAction extends Action {
         if (this.statAdd.length > 0 || this.genericAdd > 0) {
             actionOutput += " = " + totalAction;
         }
+		
+		let burnTitle = "";
+		if (this.burnt === true){
+			burnTitle = BurnRollTitle[LANG] + "\n";
+		}
 
-        moment.input = challengeOutput + "\n" + actionOutput + "\n" + result;
+        moment.input = challengeOutput + "\n" + actionOutput + "\n" + burnTitle + result;
     }
 
     /**
@@ -822,6 +845,10 @@ class RollAction extends Action {
         this.challenge = new rpgDiceRoller.DiceRoll("2d10").rolls[0];
         this.action = new rpgDiceRoller.DiceRoll("1d6").rolls[0][0];
     }
+
+	burnRoll() {
+		this.burnt = !this.burnt;
+	}
 }
 
 const ACTION_TYPES = {
