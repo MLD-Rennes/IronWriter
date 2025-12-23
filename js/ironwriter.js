@@ -16,7 +16,10 @@
 
     You should have received a copy of the GNU General Public License
     along with this program. If not, see https://github.com/SHiLLySiT/IronWriter/blob/master/LICENSE.txt.
-	TODO : Add a configuration file for the languages and other parameters.
+	
+	FIXME : Add a filter before accessing a stat to take into account the maximum/minimum possible values
+		Currently, this filter is in the StatAction class. 
+		But it creates problem when a debilities is removed for example. 
 	TODO : Negative momentum throw away a dice
 */
 const VERSION = "0.3.2";
@@ -40,7 +43,6 @@ function loadOracles(lang){
 
     document.head.appendChild(newScript);
 }
-
 
 const CHALLENGE_RANKS = {
     troublesome: 12,
@@ -530,7 +532,6 @@ function initBookmarks() {
     });
 }
 
-
 function handleEventHistoryScroll(event) {
     if (scrolledIndex === null || event[0].isIntersecting === false ) { return; }
 
@@ -657,10 +658,12 @@ function handleSelectOracle(type) {
     session.addMoment(moment);
     saveSession();
 }
+
 function doOracleRoll(type) {
     let result = getOracleValue(ORACLE[type]);
     return  OracleIndication +  " (" + type + "): " + result;
 }
+
 function getOracleValue(value) {
     if (typeof (value) == "string") {
         return value;
@@ -759,6 +762,9 @@ function handleBurnEvent(eventElement) {
 	let moment = session.history[eventElement.dataset.index];
 	let newMoment = new Moment("", EventType.Roll);
 	let action = moment.actions[0];
+	if (moment.state.stats['momentum'] < 0) {
+		return;
+	}
 	if (action instanceof RollAction) {
 		session.gotoMoment(eventElement.dataset.index - 1);
 		
@@ -784,7 +790,6 @@ function handleBurnEvent(eventElement) {
 	eventElement.querySelector(".content").innerText = newMoment.input;
 	refresh();
 }
-
 
 function handleEditEvent(eventElement) {
     submitButton.style.display = "none";
@@ -1180,7 +1185,6 @@ function removeAsset(args) {
     return action;
 
 }
-
 
 function updateInventory(args) {
     if (args[1] == undefined) {

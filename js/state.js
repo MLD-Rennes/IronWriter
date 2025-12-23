@@ -779,10 +779,14 @@ class RollAction extends Action {
         }
 
         let actionValue = this.action;
+		let momentum = moment.state.stats['momentum'];
         if (this.source != "actionDie" && moment.state.progress[this.source] !== undefined) {
             let ticks = moment.state.progress[this.source].value;
             actionValue = Math.floor(ticks / 4);
         }
+		if (momentum < 0 && Math.abs(momentum) == actionValue) {
+			actionValue = 0;
+		}
 		
 		let challenge = JSON.parse(JSON.stringify(this.challenge));
 		
