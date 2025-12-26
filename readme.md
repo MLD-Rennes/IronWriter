@@ -10,7 +10,7 @@ IronWriter is an open-source writing tool for solo playthroughs of the free tabl
 * Editing an event will update all events that follow it
 * Remove events
 * Track bonds and overall progress track
-* Integrated dice rolls
+* Integrated dice rolls and possibility to burn momentum.
 * Roll against oracle tables
 * Reroll oracle/dice
 * Import/Export
